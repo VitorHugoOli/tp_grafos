@@ -1,6 +1,10 @@
+#include <stdio.h>
+#include <stdlib.h>
+
 //
 // Created by vitor on 3/1/21.
 //
+
 
 void print_grafos() {
     printf("\033[1;35m"
