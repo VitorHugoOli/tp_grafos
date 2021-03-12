@@ -3,6 +3,7 @@
 void inicializaMatriz(TipoGrafo *m) {
     m->matriz = NULL;
     m->numArestas = 0;
+    m->nomeArquivo = (char *) malloc((255) * sizeof(char));
     m->numVertices = 0;
 }
 
@@ -28,6 +29,7 @@ float **alocaMatriz(int m) {
             v[i][j] = valorInicial;
 
     }
+
     return (v);
 }
 
@@ -195,7 +197,7 @@ void dijkstra(TipoGrafo G, int s) {
         mindist = INF;
         for (w = 1; w < G.numVertices; w++) {
             if (vet[w] == -1 && mindist > distancia[w])
-                mindist = distancia[v0 = w];///
+                mindist = distancia[v0 = w];
         }
         if (mindist == INF) break;
         vet[v0] = rot[v0];

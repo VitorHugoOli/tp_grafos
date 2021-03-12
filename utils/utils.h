@@ -25,5 +25,8 @@ void print_grafos() {
 int get_int() {
     char str[255];
     scanf("%s", str);
+    if (str[0] == 101) {
+        return 101;
+    }
     return strtol(str, NULL, 10);
 }

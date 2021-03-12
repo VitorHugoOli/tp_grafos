@@ -38,6 +38,7 @@ void case15(TipoGrafo *grafo);
 
 int main() {
     print_grafos();
+
     menu();
     return 0;
 }
@@ -45,9 +46,15 @@ int main() {
 void menu() {
     int opcao, hasGrafo = 0;
     TipoGrafo grafo;
+    inicializaMatriz(&grafo);
     do {
         printf("\033[1;34m");
-        printf("\n\n═════════════════════ Menu ══════════════════════");
+        printf("\n\n═════════════════════ Menu ══════════════════════\n");
+        if (hasGrafo) {
+            printf("Arquivo carregado: \033[1;35m%s\033[1;34m", grafo.nomeArquivo);
+        }else{
+            printf("Arquivo carregado: -");
+        }
         printf("\n"
                "╔═════════╦═════════════════════════════════════╗\n"
                "║ Valores ║ Descrição                           ║\n"
@@ -56,28 +63,27 @@ void menu() {
                "║    2    ║ Tamanho do grafo                    ║\n"
                "║    3    ║ Vizinhos de um vértice              ║\n"
                "║    4    ║ Grau de um vértice                  ║\n"
-               "║    5    ║ Verificar se grafo eh bipartido     ║\n"
-               "║    6    ║ Verificar se vértice eh articulação ║\n"
-               "║    7    ║ Verificar se aresta eh ponte        ║\n"
-               "║    8    ║ Componentes conexas                 ║\n"
-               #if DEBUG
+               "║    5    ║ Verificar se grafo é bipartido      ║\n"
+               "║    6    ║ Verificar se vértice é articulação  ║\n"
+               "║    7    ║ Verificar se aresta é ponte         ║\n"
+               "║    8    ║ Busca em profundidade               ║\n"
                "║    9    ║ Busca em largura                    ║\n"
-               "║   10    ║ -                                   ║\n"
-               "║   11    ║ -                                   ║\n"
-               "║   12    ║ -                                   ║\n"
-               "║   13    ║ -                                   ║\n"
-               "║   14    ║ -                                   ║\n"
-               "║   15    ║ -                                   ║\n"
-               "║   16    ║ -                                   ║\n"
+               "║   10    ║ Componente conexas                  ║\n"
+               "║   11    ║ Distancia e caminho minimo          ║\n"
+               "║   12    ║ Verificar se ha circuito negativo   ║\n"
+               "║   13    ║ Determinar arvore geradora minima   ║\n"
+               "║   14    ║ Verificar se grafo eh euleriano     ║\n"
+               "║   15    ║ Utilizar heuristica gulosa          ║\n"
+               #if DEBUG
                "║   17    ║ Imprimir Matriz                     ║\n"
+               #endif
+               "║ e | 101 ║ Sair                                ║\n"
                "╚═════════╩═════════════════════════════════════╝\n"
-#else
-                "╚═════════╩═════════════════════════════════════╝\n"
-#endif
+
         );
-        printf("\033[1;36mDigite a opcao desejada: \033[0m");
+        printf("\033[1;36mDigite a opção desejada: \033[0m");
         opcao = get_int();
-        if ((opcao > 0 && opcao <= 17 && hasGrafo) || (opcao == 0)) {
+        if ((opcao > 0 && opcao <= 17 && hasGrafo) || (opcao == 0 || opcao == 101)) {
             switch (opcao) {
                 case 0:
                     if (leituraArquivo(&grafo)) hasGrafo = 1;
@@ -127,11 +133,11 @@ void menu() {
                 case 15:
                     case15(&grafo);
                     break;
-                case 16:
-                    printf("\n\tPrograma finalizado com sucesso!\n");
-                    return;
                 case 17:
                     imprime(grafo);
+                case 'e':
+                    printf("\n\tPrograma finalizado com sucesso!\n");
+                    return;
                 default:
                     printf("Opcao invalida!\n");
                     break;
@@ -139,11 +145,11 @@ void menu() {
             congela;
             limpatela;
         } else {
-            printf("\n\tVoce precisa primeiramente fazer a leitura de um arquivo!\n\n");
+            printf("\033[1;32m\n\tVoce precisa primeiramente fazer a leitura de um arquivo!\033[0;0m\n\n");
             congela;
             limpatela;
         }
-    } while (opcao != 16);
+    } while (opcao != 101);
 }
 
 

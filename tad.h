@@ -1,12 +1,25 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <curses.h>
 
 #define FIN_CICLO -1
 #define false 0
 #define true 1
 
-#define limpatela system("cls");
+
+#ifdef _WIN32
+#define limpatela vsystem("cls");
+#elif defined(unix) || defined(__unix__) || defined(__unix) || (defined(__APPLE__) && defined(__MACH__))
+#define limpatela system("clear");
+#endif
+
+#ifdef _WIN32
 #define congela system("pause");
+#elif defined(unix) || defined(__unix__) || defined(__unix) || (defined(__APPLE__) && defined(__MACH__))
+#define congela system("read -p \"Pressione enter para sair\" saindo");
+#endif
+
+
 #define valorInicial 0
 #define qtd 10000
 #define INF 2147483647
@@ -20,6 +33,7 @@ typedef struct {
 
 typedef struct {
     int numVertices;
+    char *nomeArquivo;
     int numArestas;
     float **matriz;
     float **matrizAux;

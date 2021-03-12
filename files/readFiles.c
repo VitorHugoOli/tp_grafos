@@ -4,7 +4,6 @@
 // Created by vitor on 2/28/21.
 //
 int leituraArquivo(TipoGrafo *grafo) {
-    inicializaMatriz(grafo);
     FILE *arquivo;
     stCelulaMatriz celula;
     char nomeArquivo[255];
@@ -20,10 +19,14 @@ int leituraArquivo(TipoGrafo *grafo) {
             return 0;
         }
 
+
+        strcpy(grafo->nomeArquivo, nomeArquivo);
+
         fscanf(arquivo, "%d", &grafo->numVertices);
 
         grafo->matriz = alocaMatriz(grafo->numVertices);
         grafo->matrizAux = alocaMatriz(grafo->numVertices);
+
         if (grafo->matriz == NULL) {
             printf("\n\tMemoria insuficiente.\n\n");
             return 1;
