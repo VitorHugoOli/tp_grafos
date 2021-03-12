@@ -14,27 +14,16 @@ void case3(TipoGrafo *grafo);
 
 void case4(TipoGrafo *grafo);
 
-void case5(TipoGrafo *grafo);
-
-void case6(TipoGrafo *grafo);
 
 void case7(TipoGrafo *grafo);
 
 void case8(TipoGrafo *grafo);
 
-void case9(TipoGrafo *grafo);
+void case5(TipoGrafo *grafo);
 
-void case10(TipoGrafo *grafo);
 
-void case11(TipoGrafo *grafo);
+void case6(TipoGrafo *grafo);
 
-void case12(TipoGrafo *grafo);
-
-void case13(TipoGrafo *grafo);
-
-void case14(TipoGrafo *grafo);
-
-void case15(TipoGrafo *grafo);
 
 int main() {
     print_grafos();
@@ -47,12 +36,18 @@ void menu() {
     int opcao, hasGrafo = 0;
     TipoGrafo grafo;
     inicializaMatriz(&grafo);
+#if DEBUG
+    leituraArquivo(&grafo);
+    hasGrafo = 1;
+    limpatela
+#endif
+
     do {
         printf("\033[1;34m");
         printf("\n\n═════════════════════ Menu ══════════════════════\n");
         if (hasGrafo) {
             printf("Arquivo carregado: \033[1;35m%s\033[1;34m", grafo.nomeArquivo);
-        }else{
+        } else {
             printf("Arquivo carregado: -");
         }
         printf("\n"
@@ -63,19 +58,12 @@ void menu() {
                "║    2    ║ Tamanho do grafo                    ║\n"
                "║    3    ║ Vizinhos de um vértice              ║\n"
                "║    4    ║ Grau de um vértice                  ║\n"
-               "║    5    ║ Verificar se grafo é bipartido      ║\n"
-               "║    6    ║ Verificar se vértice é articulação  ║\n"
-               "║    7    ║ Verificar se aresta é ponte         ║\n"
-               "║    8    ║ Busca em profundidade               ║\n"
-               "║    9    ║ Busca em largura                    ║\n"
-               "║   10    ║ Componente conexas                  ║\n"
-               "║   11    ║ Distancia e caminho minimo          ║\n"
-               "║   12    ║ Verificar se ha circuito negativo   ║\n"
-               "║   13    ║ Determinar arvore geradora minima   ║\n"
-               "║   14    ║ Verificar se grafo eh euleriano     ║\n"
-               "║   15    ║ Utilizar heuristica gulosa          ║\n"
+               "║    5    ║ Busca em profundidade               ║\n"
+               "║    6    ║ Componente conexas                  ║\n"
+               "║    7    ║ Verificar se vértice é articulação  ║\n"
+               "║    8    ║ Verificar se aresta é ponte         ║\n"
                #if DEBUG
-               "║   17    ║ Imprimir Matriz                     ║\n"
+               "║    9    ║ Imprimir Matriz                     ║\n"
                #endif
                "║ e | 101 ║ Sair                                ║\n"
                "╚═════════╩═════════════════════════════════════╝\n"
@@ -113,28 +101,8 @@ void menu() {
                     case8(&grafo);
                     break;
                 case 9:
-                    case9(&grafo);
-                    break;
-                case 10:
-                    case10(&grafo);
-                    break;
-                case 11:
-                    case11(&grafo);
-                    break;
-                case 12:
-                    case12(&grafo);
-                    break;
-                case 13:
-                    case13(&grafo);
-                    break;
-                case 14:
-                    case14(&grafo);
-                    break;
-                case 15:
-                    case15(&grafo);
-                    break;
-                case 17:
                     imprime(grafo);
+                    break;
                 case 'e':
                     printf("\n\tPrograma finalizado com sucesso!\n");
                     return;
@@ -183,14 +151,8 @@ void case4(TipoGrafo *grafo) {
     printf("\n\tO grau do vertice %d eh %d.\n\n", vertice, grau(*grafo, vertice));
 }
 
-void case5(TipoGrafo *grafo) {
-    if (GRAPHtwocolor(*grafo) == 1)
-        printf("\n\tGrafo eh bipartido\n\n");
-    else
-        printf("\n\tGrafo nao eh bipartido\n\n");
-}
 
-void case6(TipoGrafo *grafo) {
+void case7(TipoGrafo *grafo) {
     int vertice;
     printf("\nEntre com o vertice que deseja: ");
     vertice = get_int();
@@ -201,7 +163,7 @@ void case6(TipoGrafo *grafo) {
     grafoArticulacao(*grafo, vertice);
 }
 
-void case7(TipoGrafo *grafo) {
+void case8(TipoGrafo *grafo) {
     printf("\nEntre com 1o vertice que deseja: ");
     vertice1 = get_int();
     printf("Entre com 2o vertice que deseja: ");
@@ -220,18 +182,13 @@ void case7(TipoGrafo *grafo) {
         printf("\n\tAresta %d -> %d nao eh uma ponte\n\n", vertice1, vertice2);
 }
 
-void case8(TipoGrafo *grafo) {
+void case5(TipoGrafo *grafo) {
     printf("\n\tPROFUNDIDADE\n\n");
-    ImprimeProf(*grafo);
+    PrintDepth(*grafo);
 }
 
-void case9(TipoGrafo *grafo) {
-    printf("\n\t\tLARGURA\n\n");
-    printf("| VERTICE |\t\tFILHOS\n");
-    buscaEmLargura(*grafo, 0);
-}
 
-void case10(TipoGrafo *grafo) {
+void case6(TipoGrafo *grafo) {
     int componentes = GRAPHcc(*grafo);
     printf("\n\tO numero de componentes conexas eh %d\n\n", componentes);
     int i, j;
@@ -245,35 +202,4 @@ void case10(TipoGrafo *grafo) {
     printf("\n");
 }
 
-void case11(TipoGrafo *grafo) {
-    int vertice;
-    printf("\nEntre com o vertice que deseja: ");
-    vertice = get_int();
-    if (vertice <= 0 || vertice > grafo->numVertices) {
-        printf("\n\tNumero de vertice invalido!\n\n");
-        return;
-    }
-    dijkstra(*grafo, vertice - 1);
-    printf("\n\tCaminho minimo\n\n");
-}
 
-void case12(TipoGrafo *grafo) {
-    Floyd(*grafo);
-}
-
-void case13(TipoGrafo *grafo) {
-    printf("|    VERTICE    |\tPESO\n");
-    mst(*grafo, parent);
-}
-
-void case14(TipoGrafo *grafo) {
-    if (verificarGrafoEhEuleriano(grafo) == 0) {
-        printf("\n\tGrafo eh euleriano.\n\n");
-        chamaEuler(*grafo);
-    } else
-        printf("\n\tGrafo nao eh euleriano.\n\n");
-}
-
-void case15(TipoGrafo *grafo) {
-    greedy(*grafo);
-}

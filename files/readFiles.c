@@ -1,5 +1,6 @@
 #include "readFiles.h"
 
+
 //
 // Created by vitor on 2/28/21.
 //
@@ -9,9 +10,15 @@ int leituraArquivo(TipoGrafo *grafo) {
     char nomeArquivo[255];
     do {
         fflush(stdin);
+#if DEBUG
+        arquivo = fopen(file, "rw");
+        strcpy(grafo->nomeArquivo, file);
+#else
         printf("Entre com o nome do arquivo: ");
         scanf("%s", nomeArquivo);
         arquivo = fopen(nomeArquivo, "rw");
+        strcpy(grafo->nomeArquivo, nomeArquivo);
+#endif
 
 
         if (arquivo == NULL) {
@@ -19,8 +26,6 @@ int leituraArquivo(TipoGrafo *grafo) {
             return 0;
         }
 
-
-        strcpy(grafo->nomeArquivo, nomeArquivo);
 
         fscanf(arquivo, "%d", &grafo->numVertices);
 
