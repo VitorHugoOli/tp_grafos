@@ -31,6 +31,6 @@
 #define valorInicial 0
 #define qtd 100000
 #define DEBUG 1 /* 1 for print the matrixes,0 to hide */
-#define file "../testes/conexo.txt"
-#define basePaad "../paad/base_json.json"
+#define file "testes/conexo.txt"
+#define basePaad "paad/base_json.json"
 

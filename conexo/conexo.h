@@ -1,6 +1,3 @@
-//
-// Created by vitor on 3/20/21.
-//
 #include "../utils/utils.h"
 
 #ifndef TP_C_CONEXO_H
