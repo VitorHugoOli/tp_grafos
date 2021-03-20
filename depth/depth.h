@@ -1,4 +1,8 @@
-#include "../tad.h"
+#include "../conexo/conexo.h"
+
+
+#ifndef TP_C_DEPTH_H
+#define TP_C_DEPTH_H
 
 
 typedef struct {
@@ -18,3 +22,5 @@ void DepthR(TipoGrafo G, int v, TadDepth *depth);
 void Depth(TipoGrafo G, TadDepth *depth);
 
 void PrintDepth(TipoGrafo G);
+
+#endif //TP_C_DEPTH_H

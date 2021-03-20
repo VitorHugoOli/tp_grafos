@@ -1,7 +1,5 @@
 // https://ozh.github.io/ascii-tables/
-#include "files/readFiles.h"
-#include "utils/utils.h"
-
+#include "paad/paad.h"
 
 void menu();
 
@@ -14,20 +12,18 @@ void case3(TipoGrafo *grafo);
 
 void case4(TipoGrafo *grafo);
 
-
 void case7(TipoGrafo *grafo);
 
 void case8(TipoGrafo *grafo);
 
 void case5(TipoGrafo *grafo);
 
-
 void case6(TipoGrafo *grafo);
+
+int case9(TipoGrafo *grafo, Paad *paad);
 
 
 int main() {
-    print_grafos();
-
     menu();
     return 0;
 }
@@ -35,12 +31,15 @@ int main() {
 void menu() {
     int opcao, hasGrafo = 0;
     TipoGrafo grafo;
+    Paad paad;
     inicializaMatriz(&grafo);
 #if DEBUG
     leituraArquivo(&grafo);
     hasGrafo = 1;
-    limpatela
 #endif
+
+//    limpatela
+    print_grafos();
 
     do {
         printf("\033[1;34m");
@@ -62,8 +61,10 @@ void menu() {
                "║    6    ║ Componente conexas                  ║\n"
                "║    7    ║ Verificar se vértice é articulação  ║\n"
                "║    8    ║ Verificar se aresta é ponte         ║\n"
+               "║    9    ║ Leer arquivo paad                   ║\n"
+               "║   10    ║ Grafo para paad                     ║\n"
                #if DEBUG
-               "║    9    ║ Imprimir Matriz                     ║\n"
+               "║   11    ║ Imprimir Matriz                     ║\n"
                #endif
                "║ e | 101 ║ Sair                                ║\n"
                "╚═════════╩═════════════════════════════════════╝\n"
@@ -71,7 +72,7 @@ void menu() {
         );
         printf("\033[1;36mDigite a opção desejada: \033[0m");
         opcao = get_int();
-        if ((opcao > 0 && opcao <= 17 && hasGrafo) || (opcao == 0 || opcao == 101)) {
+        if ((opcao > 0 && opcao <= 11 && hasGrafo) || (opcao == 0 || opcao == 101 || opcao == 9)) {
             switch (opcao) {
                 case 0:
                     if (leituraArquivo(&grafo)) hasGrafo = 1;
@@ -101,6 +102,14 @@ void menu() {
                     case8(&grafo);
                     break;
                 case 9:
+                    hasGrafo = case9(&grafo, &paad);
+                    break;
+                case 10:
+                    fflush(stdout);
+                    grafoToPaad(&grafo, &paad);
+                    paadWrite(&paad);
+                    break;
+                case 11:
                     imprime(grafo);
                     break;
                 case 'e':
@@ -151,7 +160,6 @@ void case4(TipoGrafo *grafo) {
     printf("\n\tO grau do vertice %d eh %d.\n\n", vertice, grau(*grafo, vertice));
 }
 
-
 void case7(TipoGrafo *grafo) {
     int vertice;
     printf("\nEntre com o vertice que deseja: ");
@@ -187,19 +195,29 @@ void case5(TipoGrafo *grafo) {
     PrintDepth(*grafo);
 }
 
+int case9(TipoGrafo *grafo, Paad *paad) {
+    if (paadRead(paad)) {
+        return paadToGrafo(grafo, paad);
+    }
+    return 0;
+
+};
+
 
 void case6(TipoGrafo *grafo) {
-    int componentes = GRAPHcc(*grafo);
-    printf("\n\tO numero de componentes conexas eh %d\n\n", componentes);
+    int *groupConexoVertice = (int *) malloc(grafo->numVertices * sizeof(int));
+    int componentes = ECC(*grafo, groupConexoVertice);
+    printf("\n\tO numero de componentes conexas é %d\n", componentes);
     int i, j;
     for (j = 0; j < componentes; j++) {
-        printf("\n\tVertices da componente %d\n", j + 1);
+        printf("\n\tVertices do componente conexo: %d ->  ", j + 1);
         for (i = 0; i < grafo->numVertices; i++)
-            if (pre[i] == j)
+            if (groupConexoVertice[i] == j)
                 printf("%d ", i + 1);
         printf("\n");
     }
     printf("\n");
+    free(groupConexoVertice);
 }
 
 

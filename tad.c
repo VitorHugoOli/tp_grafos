@@ -16,19 +16,31 @@ float **alocaMatriz(int m) {
     if (v == NULL)
         return NULL;
 
+#if DEBUG
+    printf("\n\tMatriz semi alocada. Agora será inicializada.\n\n");
+#endif
+
     // aloca as colunas da matriz
     for (i = 0; i < m; i++) {
         v[i] = (float *) malloc((m) * sizeof(float));
+        // inicializa matriz com valor valorInicial pre definido
+        memset(v[i], valorInicial, (m) * sizeof(float));
         if (v[i] == NULL)
             return NULL;
     }
 
-    // inicializa matriz com valor valorInicial pre definido
-    for (i = 0; i < m; i++) {
-        for (j = 0; j < m; j++)
-            v[i][j] = valorInicial;
 
-    }
+//    int *arr = malloc((100000 * 100000) * (sizeof *arr));
+//    memset(arr, 0, (100000 * 100000) * (sizeof *arr));
+//    printf("%d", (&arr[1000000])[1000000]);
+//
+//    int **teste;
+//    teste = (int **) malloc((100000) * sizeof(int *));
+//    for (int k = 0; k < 100000; ++k) {
+//        teste[i] =  (&arr[1]);
+//    }
+
+
 
     return (v);
 }
@@ -68,8 +80,10 @@ int GRAPHbridges(TipoGrafo G) {
     int v;
     conta = 0;
     numpts = 0;
+
     for (v = 0; v < G.numVertices; v++)
         pre[v] = -1;
+
     for (v = 0; v < G.numVertices; v++)
         if (pre[v] == -1) {
             parent[v] = v;
@@ -116,32 +130,14 @@ void grafoArticulacao(TipoGrafo G, int vertice) {
             grafo.matriz[j][vertice - 1] = valorInicial;
         }
     }
-    if (GRAPHcc(grafo) > GRAPHcc(G) + 1)
+    if (ECC(grafo) > ECC(G) + 1)
         printf("\n\tVertice %d eh uma articulacao!\n\n", vertice);
     else
         printf("\n\tVertice %d nao eh uma articulacao!\n\n", vertice);
 }
 
 
-//COMPONENTE CONEXA
-int GRAPHcc(TipoGrafo G) {
-    int v, id, i;
-    id = 0;
-    for (v = 0; v < G.numVertices; v++)
-        pre[v] = -1;
-    for (v = 0; v < G.numVertices; v++)
-        if (pre[v] == -1)
-            dfsRcc(G, v, id++);
-    return id;
-}
 
-void dfsRcc(TipoGrafo G, int v, int id) {
-    int w;
-    pre[v] = id;
-    for (w = 0; w < G.numVertices; w++)
-        if (G.matriz[v][w] != valorInicial && pre[w] == -1)
-            dfsRcc(G, w, id);
-}
 
 
 

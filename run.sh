@@ -1,2 +1,2 @@
-gcc main.c tad.c tad.h files/readFiles.c files/readFiles.h utils/utils.h depth/depth.h depth/depth.c  -o run
+gcc main.c paad/paad.c depth/depth.c utils/utils.c tad.c cjson/cJSON.c  -o run
 ./run
