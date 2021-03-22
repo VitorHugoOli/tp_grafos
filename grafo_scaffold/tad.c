@@ -29,9 +29,8 @@ float **alocaMatriz(int m) {
             return NULL;
     }
 
-
-//    int *arr = malloc((100000 * 100000) * (sizeof *arr));
-//    memset(arr, 0, (100000 * 100000) * (sizeof *arr));
+//    int *arr = malloc((100000 * 100000) * (sizeof (int *)));
+//    memset(arr, 0, (100000 * 100000) * (sizeof (int*)));
 //    printf("%d", (&arr[1000000])[1000000]);
 //
 //    int **teste;
@@ -39,8 +38,7 @@ float **alocaMatriz(int m) {
 //    for (int k = 0; k < 100000; ++k) {
 //        teste[i] =  (&arr[1]);
 //    }
-
-
+//    priuntf()
 
     return (v);
 }
@@ -113,28 +111,6 @@ void bridgeR(TipoGrafo G, int v) {
     }
 }
 
-//ARTICULA??O
-void grafoArticulacao(TipoGrafo G, int vertice) {
-    TipoGrafo grafo;
-    grafo.numVertices = G.numVertices;
-    grafo.matriz = alocaMatriz(G.numVertices);
-    int i, j;
-    for (i = 0; i < G.numVertices; i++) {
-        for (j = 0; j < G.numVertices; j++) {
-            grafo.matriz[i][j] = G.matriz[i][j];
-        }
-    }
-    for (j = 0; j < G.numVertices; j++) {
-        if (grafo.matriz[vertice - 1][j] != valorInicial) {
-            grafo.matriz[vertice - 1][j] = valorInicial;
-            grafo.matriz[j][vertice - 1] = valorInicial;
-        }
-    }
-    if (ECC(grafo) > ECC(G) + 1)
-        printf("\n\tVertice %d eh uma articulacao!\n\n", vertice);
-    else
-        printf("\n\tVertice %d nao eh uma articulacao!\n\n", vertice);
-}
 
 
 

@@ -9,11 +9,15 @@
 char *readPaadFiles() {
     FILE *arquivo;
 
+#if DEBUG
+    arquivo = fopen(debugPaad, "rw");
+#else
     printf("Entre com o nome do arquivo paad: ");
 
     char nomeArquivo[255];
     scanf("%s", nomeArquivo);
     arquivo = fopen(nomeArquivo, "rw");
+#endif
 
     fseek(arquivo, 0, SEEK_END);
     long fsize = ftell(arquivo);
@@ -45,6 +49,7 @@ int searchIndex(int value, Paad *paad) {
 }
 
 int paadToGrafo(TipoGrafo *grafo, Paad *paad) {
+    int to, from;
     grafo->numVertices = paad->nodeLen;
     grafo->numArestas = paad->edgesLen;
 
@@ -55,10 +60,11 @@ int paadToGrafo(TipoGrafo *grafo, Paad *paad) {
     grafo->matriz = alocaMatriz(paad->nodeLen);
 
     for (int i = 0; i < paad->edgesLen; ++i) {
-        grafo->matriz[searchIndex(paad->edges[i].to, paad)][searchIndex(paad->edges[i].from,
-                                                                        paad)] = (float) paad->edges[i].weight;
-        grafo->matriz[searchIndex(paad->edges[i].from, paad)][searchIndex(paad->edges[i].to,
-                                                                          paad)] = (float) paad->edges[i].weight;
+//        printf("%d %d %lf\n", paad->edges[i].to, paad->edges[i].from, paad->edges[i].weight);
+        to = searchIndex(paad->edges[i].to, paad);
+        from = searchIndex(paad->edges[i].from, paad);
+        grafo->matriz[to][from] = (float) paad->edges[i].weight;
+        grafo->matriz[from][to] = (float) paad->edges[i].weight;
     }
 
 
@@ -133,20 +139,21 @@ int paadRead(Paad *paad) {
     paad->edges = (Edge *) malloc(lenEdges * sizeof(Edge));
 
     count = 0;
-    if (paad->isPonderado) {
-        while (edgesItem != NULL) {
-            cJSON *from = cJSON_GetObjectItem(edgesItem, "from");
-            cJSON *to = cJSON_GetObjectItem(edgesItem, "to");
-            cJSON *weight = cJSON_GetObjectItem(edgesItem, "label");
+    while (edgesItem != NULL) {
+        cJSON *from = cJSON_GetObjectItem(edgesItem, "from");
+        cJSON *to = cJSON_GetObjectItem(edgesItem, "to");
+        cJSON *weight = cJSON_GetObjectItem(edgesItem, "label");
 
 
-            paad->edges[count].from = from->valueint;
-            paad->edges[count].to = to->valueint;
+        paad->edges[count].from = from->valueint;
+        paad->edges[count].to = to->valueint;
+        if (paad->isPonderado && weight != NULL) {
             paad->edges[count].weight = strtod(weight->valuestring, NULL);
-
-            count++;
-            edgesItem = edgesItem->next;
+        } else {
+            paad->edges[count].weight = 1;
         }
+        count++;
+        edgesItem = edgesItem->next;
     }
     return 1;
 }

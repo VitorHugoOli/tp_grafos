@@ -9,7 +9,6 @@
 #include "cjson/cJSON.h"
 
 
-
 #define FIN_CICLO -1
 #define false 0
 #define true 1
@@ -29,8 +28,9 @@
 
 
 #define valorInicial 0
-#define qtd 100000
+#define qtd 1000000
 #define DEBUG 1 /* 1 for print the matrixes,0 to hide */
-#define file "testes/conexo.txt"
-#define basePaad "paad/base_json.json"
+#define debugFile "../testes/grafo3.txt"
+#define debugPaad "../testes/teste_conexo_3.json"
+#define basePaad "../paad/base_json.json"
 

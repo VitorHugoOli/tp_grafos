@@ -1,4 +1,4 @@
-#include "../conexo/conexo.h"
+#include "../tad.h"
 
 
 #ifndef TP_C_DEPTH_H

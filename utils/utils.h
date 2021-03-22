@@ -3,7 +3,7 @@
 // Created by vitor on 3/1/21.
 //
 
-#include "../tad.h"
+#include "../grafo_scaffold/tad.h"
 
 
 #ifndef TP_C_UTILS_H
@@ -12,7 +12,6 @@
 void print_grafos();
 
 int get_int();
-
 
 int leituraArquivo(TipoGrafo *grafo);
 

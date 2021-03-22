@@ -62,7 +62,7 @@ MIT License
 ### Welcome to cJSON.
 
 cJSON aims to be the dumbest possible parser that you can get your job done with.
-It's a single file of C, and a single header file.
+It's a single debugFile of C, and a single header debugFile.
 
 JSON is described best here: http://www.json.org/
 It's like XML, but fat-free. You use it to move data around, store things, or just
@@ -82,7 +82,7 @@ There are several ways to incorporate cJSON into your project.
 
 #### copying the source
 
-Because the entire library is only one C file and one header file, you can just copy `cJSON.h` and `cJSON.c` to your projects source and start using it.
+Because the entire library is only one C debugFile and one header debugFile, you can just copy `cJSON.h` and `cJSON.c` to your projects source and start using it.
 
 cJSON is written in ANSI C (C89) in order to support as many platforms and compilers as possible.
 
@@ -128,7 +128,7 @@ make
 make DESTDIR=$pkgdir install
 ```
 
-On Windows CMake is usually used to create a Visual Studio solution file by running it inside the Developer Command Prompt for Visual Studio, for exact steps follow the official documentation from CMake and Microsoft and use the online search engine of your choice. The descriptions of the the options above still generally apply, although not all of them work on Windows.
+On Windows CMake is usually used to create a Visual Studio solution debugFile by running it inside the Developer Command Prompt for Visual Studio, for exact steps follow the official documentation from CMake and Microsoft and use the online search engine of your choice. The descriptions of the the options above still generally apply, although not all of them work on Windows.
 
 #### Makefile
 

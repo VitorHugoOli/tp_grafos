@@ -38,8 +38,8 @@ int leituraArquivo(TipoGrafo *grafo) {
     do {
         fflush(stdin);
 #if DEBUG
-        arquivo = fopen(file, "rw");
-        strcpy(grafo->nomeArquivo, file);
+        arquivo = fopen(debugFile, "rw");
+        strcpy(grafo->nomeArquivo, debugFile);
 #else
         printf("Entre com o nome do arquivo: ");
         scanf("%s", nomeArquivo);

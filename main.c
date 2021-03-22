@@ -1,5 +1,8 @@
 // https://ozh.github.io/ascii-tables/
 #include "paad/paad.h"
+#include "utils/utils.h"
+#include "grafo_scaffold/articulacao/articulacao.h"
+#include "grafo_scaffold/depth/depth.h"
 
 void menu();
 
@@ -38,7 +41,7 @@ void menu() {
     hasGrafo = 1;
 #endif
 
-//    limpatela
+    limpatela
     print_grafos();
 
     do {
