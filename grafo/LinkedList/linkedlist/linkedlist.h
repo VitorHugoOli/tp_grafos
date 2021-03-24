@@ -7,6 +7,7 @@
 #ifndef TP_C_LINKEDLIST_H
 #define TP_C_LINKEDLIST_H
 
+//Linked list
 typedef struct linked {
     int vertice;
     float peso;

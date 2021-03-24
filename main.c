@@ -12,7 +12,7 @@ int main() {
         printf("\n"
                "╔═══════╦═══════════════════╗\n"
                "║ Opção ║ Descrição         ║\n"
-               "║   0   ║ matriz            ║\n"
+               "║   0   ║ Matriz            ║\n"
                "║   1   ║ Linked List       ║\n"
                "║ e|101 ║ Finalizar Progama ║\n"
                "╚═══════╩═══════════════════╝\n"

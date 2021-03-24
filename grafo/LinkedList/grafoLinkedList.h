@@ -8,6 +8,7 @@ typedef struct {
     int numVertices;
     int numArestas;
     char *nomeArquivo;
+    //Lista de linked lists
     LinkedList *list;
 } GrafoLinked;
 
