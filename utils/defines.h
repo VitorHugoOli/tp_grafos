@@ -30,7 +30,7 @@
 #define valorInicial 0
 #define qtd 1000000
 #define DEBUG 1 /* 1 for print the matrixes,0 to hide */
-#define debugFile "../testes/grafo3.txt"
+#define debugFile "../testes/pilot.txt"
 #define debugPaad "../testes/teste_conexo_3.json"
 #define basePaad "../paad/base_json.json"
 

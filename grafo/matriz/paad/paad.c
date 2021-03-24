@@ -48,7 +48,7 @@ int searchIndex(int value, Paad *paad) {
     return -1;
 }
 
-int paadToGrafo(TipoGrafo *grafo, Paad *paad) {
+int paadToGrafo(GrafoMatriz *grafo, Paad *paad) {
     int to, from;
     grafo->numVertices = paad->nodeLen;
     grafo->numArestas = paad->edgesLen;
@@ -74,7 +74,7 @@ int paadToGrafo(TipoGrafo *grafo, Paad *paad) {
 
 }
 
-int grafoToPaad(TipoGrafo *grafo, Paad *paad) {
+int grafoToPaad(GrafoMatriz *grafo, Paad *paad) {
     paad->nodeLen = grafo->numVertices;
     paad->edgesLen = grafo->numArestas;
     paad->nodes = (int *) malloc(paad->nodeLen * sizeof(int));

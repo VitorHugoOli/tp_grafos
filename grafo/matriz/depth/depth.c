@@ -30,7 +30,7 @@ void allocRetorno(TadDepth *depth) {
 }
 
 
-void DepthR(TipoGrafo G, int v, TadDepth *depth) {
+void DepthR(GrafoMatriz G, int v, TadDepth *depth) {
     int w;
     int i, cont = 0;
 
@@ -52,7 +52,7 @@ void DepthR(TipoGrafo G, int v, TadDepth *depth) {
 
 }
 
-void Depth(TipoGrafo G, TadDepth *depth) {
+void Depth(GrafoMatriz G, TadDepth *depth) {
     int v, i;
 
 
@@ -69,7 +69,7 @@ void Depth(TipoGrafo G, TadDepth *depth) {
     }
 }
 
-void PrintDepth(TipoGrafo G) {
+void PrintDepth(GrafoMatriz G) {
     TadDepth depth;
     initDepth(G.numVertices, &depth);
     Depth(G, &depth);

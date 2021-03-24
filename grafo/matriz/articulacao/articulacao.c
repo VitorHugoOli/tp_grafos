@@ -1,8 +1,8 @@
 #include "articulacao.h"
 
 //ARTICULAÇÃO
-void grafoArticulacao(TipoGrafo G, int vertice) {
-    TipoGrafo grafo;
+void grafoArticulacao(GrafoMatriz G, int vertice) {
+    GrafoMatriz grafo;
     grafo.numVertices = G.numVertices;
     grafo.matriz = alocaMatriz(G.numVertices);
     int i, j;

@@ -1,7 +1,7 @@
 //
 // Created by vitor on 2/28/21.
 //
-#include "../grafo_scaffold/tad.h"
+#include "../grafoMatriz.h"
 
 
 #ifndef TP_C_PAAD_H
@@ -25,9 +25,9 @@ typedef struct {
 
 int paadRead(Paad *Paad);
 
-int paadToGrafo(TipoGrafo *grafo, Paad *paad);
+int paadToGrafo(GrafoMatriz *grafo, Paad *paad);
 
-int grafoToPaad(TipoGrafo *grafo, Paad *paad);
+int grafoToPaad(GrafoMatriz *grafo, Paad *paad);
 
 int paadWrite(Paad *Paad);
 

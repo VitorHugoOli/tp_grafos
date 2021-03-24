@@ -10,7 +10,7 @@
  *
  * Acha todos os componentes conexos e seus respectivos vertices
  * */
-int ECC(TipoGrafo G, int *groupConexoVertice) {
+int ECC(GrafoMatriz G, int *groupConexoVertice) {
     int numGrupoConexo = 0;
 
     //Inicializa o vetor groupConexoVertice
@@ -32,7 +32,7 @@ int ECC(TipoGrafo G, int *groupConexoVertice) {
  *  Dado um verticeAnalise, percorre todos os outros vertices do mesmo
  *  grupo conexo a ele.
  * */
-void PCC(TipoGrafo G, int verticeAnalise, int numGrupoConexo, int *groupConexoVertice) {
+void PCC(GrafoMatriz G, int verticeAnalise, int numGrupoConexo, int *groupConexoVertice) {
 
     //Atribuindo no index que representa o verticeAnalise o seu grupo conexo
     groupConexoVertice[verticeAnalise] = numGrupoConexo;
