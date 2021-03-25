@@ -9,7 +9,7 @@ void initGrafo(GrafoLinked *grafo) {
     grafo = (GrafoLinked *) malloc(sizeof(GrafoLinked));
     grafo->numVertices = 0;
     grafo->numArestas = 0;
-    grafo->list=NULL;
+    grafo->list = NULL;
 }
 
 void addAresta(LinkedList *to, int from, float weight) {
@@ -33,7 +33,7 @@ void printGrafo(GrafoLinked *grafo) {
     }
 
     for (int i = 0; i < grafo->numVertices; ++i) {
-        printf("%d | ", i+1);
+        printf("%d | ", i + 1);
         printLinked(&grafo->list[i]);
         printf("\n");
     }
@@ -99,10 +99,10 @@ int textToGrafo(GrafoLinked *grafo) {
  * Operacoes dos Choices
  * */
 
-int secureChoice(GrafoLinked *grafo, int vertice){
-    if (vertice<=0 || vertice>(grafo->numVertices)){
+int secureChoice(GrafoLinked *grafo, int vertice) {
+    if (vertice <= 0 || vertice > (grafo->numVertices)) {
         return 1;
-    }else{
+    } else {
         return 0;
     }
 }
@@ -112,8 +112,7 @@ void vizinhosLinked(GrafoLinked *grafo) {
     printf("\nEntre com o vertice que deseja saber a vizinhanca: ");
     vertice = get_int();
 
-    if (secureChoice(grafo, vertice)){
-
+    if (secureChoice(grafo, vertice)) {
         printf("Entrada invalida");
         return;
     }
@@ -136,7 +135,7 @@ int grauLinked(GrafoLinked *grafo) {
     printf("\nEntre com o vertice que deseja saber o grau: ");
     vertice = get_int();
 
-    if (secureChoice(grafo, vertice)){
+    if (secureChoice(grafo, vertice)) {
         printf("Entrada invalida");
         return -1;
     }
