@@ -25,7 +25,6 @@ void addAresta(LinkedList *to, int from, float weight) {
     to->next = createNode(from, weight);
 }
 
-
 void printGrafo(GrafoLinked *grafo) {
 
     if (grafo == NULL || grafo->numVertices == 0) {
@@ -34,7 +33,7 @@ void printGrafo(GrafoLinked *grafo) {
     }
 
     for (int i = 0; i < grafo->numVertices; ++i) {
-        printf("%d | ", i);
+        printf("%d | ", i+1);
         printLinked(&grafo->list[i]);
         printf("\n");
     }
@@ -85,8 +84,8 @@ int textToGrafo(GrafoLinked *grafo) {
         }
 
         while (fscanf(arquivo, "%d %d %f", &data.linha, &data.coluna, &data.peso) != EOF) {
-            addAresta(&grafo->list[data.linha - 1], data.coluna - 1, data.peso);
-            addAresta(&grafo->list[data.coluna - 1], data.linha - 1, data.peso);
+            addAresta(&grafo->list[data.linha - 1], data.coluna, data.peso);
+            addAresta(&grafo->list[data.coluna - 1], data.linha, data.peso);
         }
 
         fclose(arquivo);
@@ -95,3 +94,97 @@ int textToGrafo(GrafoLinked *grafo) {
     printf("\n\tArquivo lido com sucesso! \\o/ \n\n");
     return 1;
 }
+
+/*
+ * Operacoes dos Choices
+ * */
+
+int secureChoice(GrafoLinked *grafo, int vertice){
+    if (vertice<=0 || vertice>(grafo->numVertices)){
+        return 1;
+    }else{
+        return 0;
+    }
+}
+
+void vizinhosLinked(GrafoLinked *grafo) {
+    int vertice;
+    printf("\nEntre com o vertice que deseja saber a vizinhanca: ");
+    vertice = get_int();
+
+    if (secureChoice(grafo, vertice)){
+
+        printf("Entrada invalida");
+        return;
+    }
+
+
+    printf("\n\tVizinhos de %d\n", vertice);
+
+
+    printf("(%d)\n", vertice);
+    LinkedList *neighbor = &grafo->list[vertice - 1];
+    while (neighbor != NULL) {
+        printf("|-- %d\n", neighbor->vertice);
+        neighbor = neighbor->next;
+    }
+    printf("\n\n");
+}
+
+int grauLinked(GrafoLinked *grafo) {
+    int vertice;
+    printf("\nEntre com o vertice que deseja saber o grau: ");
+    vertice = get_int();
+
+    if (secureChoice(grafo, vertice)){
+        printf("Entrada invalida");
+        return -1;
+    }
+
+    LinkedList *neighbor = &grafo->list[vertice - 1];
+    int grau = 0;
+    while (neighbor != NULL) {
+        grau++;
+        neighbor = neighbor->next;
+    }
+
+    printf("\n\tO grau do vertice (%d) é %d.\n\n", vertice, grau);
+    return grau;
+}
+
+//int GRAPHbridgesLinked(GrafoLinked G) {
+//    int *pre = (int*)malloc(G.numVertices*sizeof(int));
+//    int *parent = (int*)malloc(G.numVertices*sizeof(int));
+//    int v, conta = 0, numpts = 0;
+//
+//    for (v = 0; v < G.numVertices; v++)
+//        pre[v] = -1;
+//
+//    for (v = 0; v < G.numVertices; v++)
+//        if (pre[v] == -1) {
+//            parent[v] = v;
+//            bridgeR(G, v);
+//        }
+//    return numpts;
+//}
+//
+//void bridgeR(GrafoLinked G, int v,int *pre, int *low) {
+//    int w;
+//    pre[v] = conta++;///a cada chamada ele tira um v?rtice do vetor de v?rtices marcados pre.
+//    low[v] = pre[v];
+//    for (w = 0; w < G.numVertices; w++) {
+//        if (G.list[v] != 0) {
+//            if (pre[w] == -1) {
+//                parent[w] = v;
+//                bridgeR(G, w);
+//                if (low[v] > low[w]) low[v] = low[w];
+//                //if(v==w) printf("eh ponte");
+//                if (low[w] == pre[w]) {
+//                    if ((vertice1 == v + 1 && vertice2 == w + 1) || (vertice1 == w + 1 && vertice2 == v + 1))
+//                        numpts++;
+//                }
+//            } else if (w != parent[v] && low[v] > pre[w])
+//                low[v] = pre[w];
+//        }
+//    }
+//}

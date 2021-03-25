@@ -28,11 +28,11 @@ void menuLinked() {
         printf("\n"
                "╔═════════╦═════════════════════════════════════╗\n"
                "║ Valores ║ Descrição                           ║\n"
-               "║    0    ║ Carregar arquivo(Vitor)                    ║\n"
-               "║    1    ║ Ordem do grafo(Igor & Pedro)                      ║\n"
-               "║    2    ║ Tamanho do grafo(Igor & Pedro)                    ║\n"
-               "║    3    ║ Vizinhos de um vértice(Igor & Pedro)              ║\n"
-               "║    4    ║ Grau de um vértice(Igor & Pedro)                  ║\n"
+               "║    0    ║ Carregar arquivo                    ║\n"
+               "║    1    ║ Ordem do grafo                      ║\n"
+               "║    2    ║ Tamanho do grafo                    ║\n"
+               "║    3    ║ Vizinhos de um vértice              ║\n"
+               "║    4    ║ Grau de um vértice                  ║\n"
                "║    5    ║ Busca em profundidade(Daniel)               ║\n"
                "║    6    ║ Componente conexas(Daniel)                  ║\n"
                "║    7    ║ Verificar se vértice é articulação(Daniel)  ║\n"
@@ -40,7 +40,7 @@ void menuLinked() {
                "║    9    ║ Leer arquivo paad(Vitor)                   ║\n"
                "║   10    ║ Grafo para paad(Vitor)                     ║\n"
                #if DEBUG
-               "║   11    ║ Imprimir Linked List(Vitor)                     ║\n"
+               "║   11    ║ Imprimir Linked List                ║\n"
                #endif
                "║ e | 101 ║ Sair                                ║\n"
                "╚═════════╩═════════════════════════════════════╝\n"
@@ -117,25 +117,11 @@ void caseLinked2(GrafoLinked *grafo) {
 }
 
 void caseLinked3(GrafoLinked *grafo) {
-//    int vertice;
-//    printf("\nEntre com o vertice que deseja saber a vizinhanca: ");
-//    vertice = get_int();
-//    if (vertice <= 0 || vertice > grafo->numVertices) {
-//        printf("\n\tNumero de vertice invalido!\n\n");
-//        return;
-//    }
-//    vizinhos(*grafo, vertice);
+    vizinhosLinked(grafo);
 }
 
 void caseLinked4(GrafoLinked *grafo) {
-//    int vertice;
-//    printf("\nEntre com o vertice que deseja saber o grau: ");
-//    vertice = get_int();
-//    if (vertice <= 0 || vertice > grafo->numVertices) {
-//        printf("\n\tNumero de vertice invalido!\n\n");
-//        return;
-//    }
-//    printf("\n\tO grau do vertice %d eh %d.\n\n", vertice, grau(*grafo, vertice));
+    grauLinked(grafo);
 }
 
 void caseLinked7(GrafoLinked *grafo) {
