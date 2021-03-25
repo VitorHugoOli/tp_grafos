@@ -7,6 +7,7 @@
 
 void initGrafo(GrafoLinked *grafo) {
     grafo = (GrafoLinked *) malloc(sizeof(GrafoLinked));
+    grafo->nomeArquivo = (char *) malloc (255 * sizeof (char));
     grafo->numVertices = 0;
     grafo->numArestas = 0;
     grafo->list = NULL;
@@ -45,14 +46,17 @@ FILE *readFiles(GrafoLinked *grafo) {
     char nomeArquivo[255];
 
 #if DEBUG
+
     arquivo = fopen(debugFile, "rw");
-    strcpy(grafo->nomeArquivo, debugFile);
+
+    //strcpy(grafo->nomeArquivo, debugFile);
 #else
     fflush(stdin);
     printf("Entre com o nome do arquivo: ");
     scanf("%s", nomeArquivo);
     arquivo = fopen(nomeArquivo, "rw");
-    strcpy(grafo->nomeArquivo, nomeArquivo);
+
+    //strcpy(grafo->nomeArquivo, nomeArquivo);
 #endif
     return arquivo;
 
@@ -64,7 +68,9 @@ int textToGrafo(GrafoLinked *grafo) {
 
 
     do {
+        
         arquivo = readFiles(grafo);
+        printf("nao aguento mais!");
 
         if (arquivo == NULL) {
             printf("\n\tArquivo invalido tente novamente.\n\n");
@@ -73,8 +79,8 @@ int textToGrafo(GrafoLinked *grafo) {
 
         fscanf(arquivo, "%d", &grafo->numVertices);
 
-
         grafo->list = createLinkedList(grafo->numVertices);
+
 
 
         if (grafo->list == NULL) {

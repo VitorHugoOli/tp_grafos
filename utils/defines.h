@@ -3,10 +3,9 @@
 //
 #include <stdio.h>
 #include <stdlib.h>
-#include <curses.h>
 #include "string.h"
 #include <wchar.h>
-#include "cjson/cJSON.h"
+#include "../cjson/cJSON.h"
 
 
 #define FIN_CICLO -1
@@ -29,8 +28,8 @@
 
 #define valorInicial 0
 #define qtd 1000000
-#define DEBUG 1 /* 1 for print the matrixes,0 to hide */
-#define debugFile "../testes/pilot.txt"
-#define debugPaad "../testes/teste_conexo_3.json"
-#define basePaad "../grafo/matriz/paad/base_json.json"
+#define DEBUG 0 /* 1 for print the matrixes,0 to hide */
+#define debugFile "testes/pilot.txt"
+#define debugPaad "testes/teste_conexo_3.json"
+#define basePaad "grafo/matriz/paad/base_json.json"
 
