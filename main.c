@@ -5,6 +5,7 @@
 
 int main() {
     limpatela
+
     int chose = 0;
     while (chose != 101) {
         print_grafos();

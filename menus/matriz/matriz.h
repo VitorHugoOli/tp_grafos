@@ -2,7 +2,7 @@
 // Created by vitor on 3/23/21.
 //
 #include "../../utils/utils.h"
-#include "../../grafo/matriz/paad/paad.h"
+#include "../../grafo/matriz/matrizPaad/matrizPaad.h"
 #include "../../grafo/matriz/articulacao/articulacao.h"
 #include "../../grafo/matriz/depth/depth.h"
 

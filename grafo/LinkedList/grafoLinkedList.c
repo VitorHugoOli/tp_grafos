@@ -7,7 +7,7 @@
 
 void initGrafo(GrafoLinked *grafo) {
     grafo = (GrafoLinked *) malloc(sizeof(GrafoLinked));
-    grafo->nomeArquivo = (char *) malloc (255 * sizeof (char));
+    grafo->nomeArquivo = (char *) malloc(255 * sizeof(char));
     grafo->numVertices = 0;
     grafo->numArestas = 0;
     grafo->list = NULL;
@@ -49,14 +49,14 @@ FILE *readFiles(GrafoLinked *grafo) {
 
     arquivo = fopen(debugFile, "rw");
 
-    //strcpy(grafo->nomeArquivo, debugFile);
+    strcpy(grafo->nomeArquivo, debugFile);
 #else
     fflush(stdin);
     printf("Entre com o nome do arquivo: ");
     scanf("%s", nomeArquivo);
     arquivo = fopen(nomeArquivo, "rw");
 
-    //strcpy(grafo->nomeArquivo, nomeArquivo);
+    strcpy(grafo->nomeArquivo, nomeArquivo);
 #endif
     return arquivo;
 
@@ -68,9 +68,8 @@ int textToGrafo(GrafoLinked *grafo) {
 
 
     do {
-        
+
         arquivo = readFiles(grafo);
-        printf("nao aguento mais!");
 
         if (arquivo == NULL) {
             printf("\n\tArquivo invalido tente novamente.\n\n");
@@ -82,16 +81,17 @@ int textToGrafo(GrafoLinked *grafo) {
         grafo->list = createLinkedList(grafo->numVertices);
 
 
-
         if (grafo->list == NULL) {
             fclose(arquivo);
             printf("\n\tMemoria insuficiente.\n\n");
             return 1;
         }
 
+        grafo->numArestas=0;
         while (fscanf(arquivo, "%d %d %f", &data.linha, &data.coluna, &data.peso) != EOF) {
             addAresta(&grafo->list[data.linha - 1], data.coluna, data.peso);
             addAresta(&grafo->list[data.coluna - 1], data.linha, data.peso);
+            grafo->numArestas++;
         }
 
         fclose(arquivo);
@@ -130,7 +130,7 @@ void vizinhosLinked(GrafoLinked *grafo) {
     printf("(%d)\n", vertice);
     LinkedList *neighbor = &grafo->list[vertice - 1];
     while (neighbor != NULL) {
-        printf("|-- %d\n", neighbor->vertice);
+        printf(" |-- %d\n", neighbor->vertice);
         neighbor = neighbor->next;
     }
     printf("\n\n");

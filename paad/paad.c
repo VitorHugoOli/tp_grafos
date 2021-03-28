@@ -1,9 +1,5 @@
-#include <locale.h>
-#include "paad.h"
 
-//
-// Created by vitor on 2/28/21.
-//
+#include "paad.h"
 
 
 char *readPaadFiles() {
@@ -12,12 +8,17 @@ char *readPaadFiles() {
 #if DEBUG
     arquivo = fopen(debugPaad, "rw");
 #else
-    printf("Entre com o nome do arquivo paad: ");
+    printf("Entre com o nome do arquivo matrizPaad: ");
 
     char nomeArquivo[255];
     scanf("%s", nomeArquivo);
     arquivo = fopen(nomeArquivo, "rw");
 #endif
+
+    if (arquivo == NULL) {
+        printf("\n\tArquivo invalido tente novamente.\n\n");
+        return 0;
+    }
 
     fseek(arquivo, 0, SEEK_END);
     long fsize = ftell(arquivo);
@@ -30,11 +31,6 @@ char *readPaadFiles() {
     string[fsize] = 0;
 
 
-    if (arquivo == NULL) {
-        printf("\n\tArquivo invalido tente novamente.\n\n");
-        return 0;
-    }
-
     return string;
 
 }
@@ -46,53 +42,6 @@ int searchIndex(int value, Paad *paad) {
         }
     }
     return -1;
-}
-
-int paadToGrafo(GrafoMatriz *grafo, Paad *paad) {
-    int to, from;
-    grafo->numVertices = paad->nodeLen;
-    grafo->numArestas = paad->edgesLen;
-
-    if (grafo->matriz == NULL) {
-        free(grafo->matriz);
-    }
-
-    grafo->matriz = alocaMatriz(paad->nodeLen);
-
-    for (int i = 0; i < paad->edgesLen; ++i) {
-//        printf("%d %d %lf\n", paad->edges[i].to, paad->edges[i].from, paad->edges[i].weight);
-        to = searchIndex(paad->edges[i].to, paad);
-        from = searchIndex(paad->edges[i].from, paad);
-        grafo->matriz[to][from] = (float) paad->edges[i].weight;
-        grafo->matriz[from][to] = (float) paad->edges[i].weight;
-    }
-
-
-    printf("Parse Paad json para TadGrafo com sucesso! \\o/");
-    return 1;
-
-
-}
-
-int grafoToPaad(GrafoMatriz *grafo, Paad *paad) {
-    paad->nodeLen = grafo->numVertices;
-    paad->edgesLen = grafo->numArestas;
-    paad->nodes = (int *) malloc(paad->nodeLen * sizeof(int));
-    paad->edges = (Edge *) malloc(paad->edgesLen * sizeof(Edge));
-
-    int count = 0;
-    for (int i = 0; i < paad->nodeLen; ++i) {
-        for (int j = 0; j < paad->nodeLen; ++j) {
-            if (i <= j && grafo->matriz[i][j] != valorInicial) {
-                paad->edges[count].from = i;
-                paad->edges[count].to = j;
-                paad->edges[count].weight = (double) grafo->matriz[i][j];
-                count++;
-            }
-        }
-    }
-
-    return 1;
 }
 
 int paadRead(Paad *paad) {
@@ -165,7 +114,7 @@ int paadWrite(Paad *paad) {
 
     if (arquivo == NULL) {
         fflush(stdout);
-        printf("Não foi possivel ler o arquivo ¯\\_(ツ)_/¯");
+        printf("Não foi possivel ler o arquivo base ¯\\_(ツ)_/¯");
         return 0;
     }
 
@@ -217,7 +166,7 @@ int paadWrite(Paad *paad) {
     }
 
 
-    arquivo = fopen("../paad.json", "w");
+    arquivo = fopen("paad.json", "w");
     char *stringg = cJSON_Print(json);
     fprintf(arquivo, "%s", stringg);
     fclose(arquivo);

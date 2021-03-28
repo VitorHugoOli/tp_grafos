@@ -8,7 +8,7 @@ void menuLinked() {
     int opcao, hasGrafo = 0;
     GrafoLinked grafo;
     initGrafo(&grafo);
-//    Paad paad;
+    Paad paad;
 
 #if DEBUG
     hasGrafo = textToGrafo(&grafo);
@@ -37,8 +37,8 @@ void menuLinked() {
                "║    6    ║ Componente conexas(Daniel)                  ║\n"
                "║    7    ║ Verificar se vértice é articulação(Daniel)  ║\n"
                "║    8    ║ Verificar se aresta é ponte(Igor & Pedro)         ║\n"
-               "║    9    ║ Leer arquivo paad(Vitor)                   ║\n"
-               "║   10    ║ Grafo para paad(Vitor)                     ║\n"
+               "║    9    ║ Leer arquivo paad                   ║\n"
+               "║   10    ║ Grafo para paad                     ║\n"
                #if DEBUG
                "║   11    ║ Imprimir Linked List                ║\n"
                #endif
@@ -78,12 +78,12 @@ void menuLinked() {
                     caseLinked8(&grafo);
                     break;
                 case 9:
-//                    hasGrafo = caseLinked9(&grafo, &paad);
+                    hasGrafo = caseLinked9(&grafo, &paad);
                     break;
                 case 10:
                     fflush(stdout);
-//                    grafoToPaad(&grafo, &paad);
-//                    paadWrite(&paad);
+                    linkedToPaad(&grafo, &paad);
+                    paadWrite(&paad);
                     break;
                 case 11:
                     fflush(stdin);
@@ -159,13 +159,13 @@ void caseLinked5(GrafoLinked *grafo) {
 //    PrintDepth(*grafo);
 }
 
-//int caseLinked9(GrafoLinked *grafo, Paad *paad) {
-//    if (paadRead(paad)) {
-//        return paadToGrafo(grafo, paad);
-//    }
-//    return 0;
-//
-//};
+int caseLinked9(GrafoLinked *grafo, Paad *paad) {
+    if (paadRead(paad)) {
+        return PaadToLinked(grafo, paad);
+    }
+    return 0;
+
+};
 
 
 void caseLinked6(GrafoLinked *grafo) {

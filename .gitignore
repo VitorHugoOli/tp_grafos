@@ -8,10 +8,10 @@
 .idea/**/dictionaries
 .idea/**/shelf
 
-# Generated paad
+# Generated matrizPaad
 .idea/**/contentModel.xml
 
-# Sensitive or high-churn paad
+# Sensitive or high-churn matrizPaad
 .idea/**/dataSources/
 .idea/**/dataSources.ids
 .idea/**/dataSources.local.xml
@@ -25,7 +25,7 @@
 .idea/**/libraries
 
 # Gradle and Maven with auto-import
-# When using Gradle or Maven with auto-import, you should exclude module paad,
+# When using Gradle or Maven with auto-import, you should exclude module matrizPaad,
 # since they will be recreated, and may cause churn.  Uncomment if using
 # auto-import.
 # .idea/artifacts
@@ -72,7 +72,7 @@ fabric.properties
 # Prerequisites
 *.d
 
-# Object paad
+# Object matrizPaad
 *.o
 *.ko
 *.obj
@@ -107,7 +107,7 @@ fabric.properties
 *.x86_64
 *.hex
 
-# Debug paad
+# Debug matrizPaad
 *.dSYM/
 *.su
 *.idb

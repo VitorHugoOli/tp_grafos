@@ -37,8 +37,8 @@ void menuMatriz() {
                "║    6    ║ Componente conexas                  ║\n"
                "║    7    ║ Verificar se vértice é articulação  ║\n"
                "║    8    ║ Verificar se aresta é ponte         ║\n"
-               "║    9    ║ Leer arquivo paad                   ║\n"
-               "║   10    ║ Grafo para paad                     ║\n"
+               "║    9    ║ Leer arquivo matriz                 ║\n"
+               "║   10    ║ Grafo para matriz                   ║\n"
                #if DEBUG
                "║   11    ║ Imprimir Matriz                     ║\n"
                #endif
@@ -82,7 +82,7 @@ void menuMatriz() {
                     break;
                 case 10:
                     fflush(stdout);
-                    grafoToPaad(&grafo, &paad);
+                    matrizToPaad(&grafo, &paad);
                     paadWrite(&paad);
                     break;
                 case 11:
@@ -148,9 +148,9 @@ void case7(GrafoMatriz *grafo) {
 }
 
 void case8(GrafoMatriz *grafo) {
-    printf("\nEntre com 1o vertice que deseja: ");
+    printf("\nEntre com 1º vertice que deseja: ");
     vertice1 = get_int();
-    printf("Entre com 2o vertice que deseja: ");
+    printf("Entre com 2º vertice que deseja: ");
     vertice2 = get_int();
     if (vertice1 <= 0 || vertice1 > grafo->numVertices) {
         printf("\n\tNumero de vertice invalido!\n\n");
@@ -173,7 +173,7 @@ void case5(GrafoMatriz *grafo) {
 
 int case9(GrafoMatriz *grafo, Paad *paad) {
     if (paadRead(paad)) {
-        return paadToGrafo(grafo, paad);
+        return paadToMatriz(grafo, paad);
     }
     return 0;
 

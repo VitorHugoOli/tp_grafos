@@ -26,6 +26,7 @@ LinkedList *createLinkedList(int numVertices) {
 
     for (int i = 0; i < numVertices; ++i) {
         list[i].vertice = 0;
+        list[i].next = NULL;
     }
     return list;
 }
