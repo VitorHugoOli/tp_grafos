@@ -12,8 +12,8 @@ void menuLinked() {
 
 #if DEBUG
     hasGrafo = textToGrafo(&grafo);
-    limpatela
 #endif
+    limpatela
 
 
     do {
@@ -33,10 +33,10 @@ void menuLinked() {
                "║    2    ║ Tamanho do grafo                    ║\n"
                "║    3    ║ Vizinhos de um vértice              ║\n"
                "║    4    ║ Grau de um vértice                  ║\n"
-               "║    5    ║ Busca em profundidade(Daniel)               ║\n"
-               "║    6    ║ Componente conexas(Daniel)                  ║\n"
-               "║    7    ║ Verificar se vértice é articulação(Daniel)  ║\n"
-               "║    8    ║ Verificar se aresta é ponte(Igor & Pedro)         ║\n"
+               "║    5    ║ Busca em profundidade               ║\n"
+               "║    6    ║ Componente conexas                  ║\n"
+               "║    7    ║ Verificar se vértice é articulação  ║\n"
+               "║    8    ║ Verificar se aresta é ponte         ║\n"
                "║    9    ║ Leer arquivo paad                   ║\n"
                "║   10    ║ Grafo para paad                     ║\n"
                #if DEBUG
@@ -78,7 +78,7 @@ void menuLinked() {
                     caseLinked8(&grafo);
                     break;
                 case 9:
-                    hasGrafo = caseLinked9(&grafo, &paad);
+                    hasGrafo = caseLinked9(&grafo, &paad, hasGrafo);
                     break;
                 case 10:
                     fflush(stdout);
@@ -125,43 +125,21 @@ void caseLinked4(GrafoLinked *grafo) {
 }
 
 void caseLinked7(GrafoLinked *grafo) {
-//    int vertice;
-//    printf("\nEntre com o vertice que deseja: ");
-//    vertice = get_int();
-//    if (vertice <= 0 || vertice > grafo->numVertices) {
-//        printf("\n\tNumero de vertice invalido!\n\n");
-//        return;
-//    }
-//    grafoArticulacao(*grafo, vertice);
+    articulationLinked(grafo);
 }
 
 void caseLinked8(GrafoLinked *grafo) {
-//    printf("\nEntre com 1o vertice que deseja: ");
-//    vertice1 = get_int();
-//    printf("Entre com 2o vertice que deseja: ");
-//    vertice2 = get_int();
-//    if (vertice1 <= 0 || vertice1 > grafo->numVertices) {
-//        printf("\n\tNumero de vertice invalido!\n\n");
-//        return;
-//    }
-//    if (vertice2 <= 0 || vertice2 > grafo->numVertices) {
-//        printf("\n\tNumero de vertice invalido!\n\n");
-//        return;
-//    }
-//    if (GRAPHbridges(*grafo) == 1)
-//        printf("\n\tAresta %d -> %d eh uma ponte\n\n", vertice1, vertice2);
-//    else
-//        printf("\n\tAresta %d -> %d nao eh uma ponte\n\n", vertice1, vertice2);
+    bridgeLinked(*grafo);
 }
 
 void caseLinked5(GrafoLinked *grafo) {
-//    printf("\n\tPROFUNDIDADE\n\n");
-//    PrintDepth(*grafo);
+    printf("\n\tPROFUNDIDADE\n\n");
+    BuscaProfundidade_grafo(grafo, 0);
 }
 
-int caseLinked9(GrafoLinked *grafo, Paad *paad) {
+int caseLinked9(GrafoLinked *grafo, Paad *paad, int isInitGraph) {
     if (paadRead(paad)) {
-        return PaadToLinked(grafo, paad);
+        return PaadToLinked(grafo, paad,isInitGraph );
     }
     return 0;
 
@@ -169,19 +147,7 @@ int caseLinked9(GrafoLinked *grafo, Paad *paad) {
 
 
 void caseLinked6(GrafoLinked *grafo) {
-//    int *groupConexoVertice = (int *) malloc(grafo->numVertices * sizeof(int));
-//    int componentes = ECC(*grafo, groupConexoVertice);
-//    printf("\n\tO numero de componentes conexas é %d\n", componentes);
-//    int i, j;
-//    for (j = 0; j < componentes; j++) {
-//        printf("\n\tVertices do componente conexo: %d ->  ", j + 1);
-//        for (i = 0; i < grafo->numVertices; i++)
-//            if (groupConexoVertice[i] == j)
-//                printf("%d ", i + 1);
-//        printf("\n");
-//    }
-//    printf("\n");
-//    free(groupConexoVertice);
+    ECCLinked(*grafo, 1);
 }
 
 

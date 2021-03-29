@@ -2,14 +2,12 @@
 #include "paad.h"
 
 
-char *readPaadFiles() {
+char *readPaadFiles(Paad *paad) {
     FILE *arquivo;
-
 #if DEBUG
     arquivo = fopen(debugPaad, "rw");
 #else
     printf("Entre com o nome do arquivo matrizPaad: ");
-
     char nomeArquivo[255];
     scanf("%s", nomeArquivo);
     arquivo = fopen(nomeArquivo, "rw");
@@ -17,7 +15,7 @@ char *readPaadFiles() {
 
     if (arquivo == NULL) {
         printf("\n\tArquivo invalido tente novamente.\n\n");
-        return 0;
+        return NULL;
     }
 
     fseek(arquivo, 0, SEEK_END);
@@ -53,7 +51,10 @@ int paadRead(Paad *paad) {
     }
 
 
-    char *jsonStr = readPaadFiles();
+    char *jsonStr = readPaadFiles(paad);
+    if (jsonStr == NULL){
+        return 0;
+    }
 
     cJSON *json = cJSON_Parse(jsonStr);
     cJSON *data = cJSON_GetObjectItem(json, "data");
@@ -114,7 +115,7 @@ int paadWrite(Paad *paad) {
 
     if (arquivo == NULL) {
         fflush(stdout);
-        printf("Não foi possivel ler o arquivo base ¯\\_(ツ)_/¯");
+        printf("Não foi possivel ler o arquivo base ¯\\_(ツ)_/¯\n");
         return 0;
     }
 
@@ -166,7 +167,7 @@ int paadWrite(Paad *paad) {
     }
 
 
-    arquivo = fopen("paad.json", "w");
+    arquivo = fopen("../paad.json", "w");
     char *stringg = cJSON_Print(json);
     fprintf(arquivo, "%s", stringg);
     fclose(arquivo);

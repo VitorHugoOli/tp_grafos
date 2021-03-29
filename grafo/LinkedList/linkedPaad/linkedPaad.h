@@ -7,6 +7,6 @@
 
 int linkedToPaad(GrafoLinked *grafo, Paad *paad);
 
-int PaadToLinked(GrafoLinked *grafo, Paad *paad);
+int PaadToLinked(GrafoLinked *grafo, Paad *paad, int isInitGraph);
 
 #endif //TP_C_LINKEDPAAD_H

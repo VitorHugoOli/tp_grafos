@@ -28,8 +28,8 @@
 
 #define valorInicial 0
 #define qtd 1000000
-#define DEBUG 1 /* 1 for print the matrixes,0 to hide */
-#define debugFile "testes/grafo1.txt"
-#define debugPaad "testes/paad/teste.json"
+#define DEBUG 0/* 1 for print the matrixes,0 to hide */
+#define debugFile "testes/pilot.txt"
+#define debugPaad "testes/paad/depth.json"
 #define basePaad "paad/base_json.json"
 

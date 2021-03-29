@@ -15,5 +15,6 @@ add_executable(TP_C main.c grafo/matriz/matrizPaad/matrizPaad.c
         grafo/LinkedList/linkedPaad/linkedPaad.c
         grafo/LinkedList/depth/depthLikedList.c
         grafo/LinkedList/conexo/conexo.c
-        grafo/LinkedList/articulacao/articulacao.c
+        grafo/LinkedList/bridge/bridge.c
+        grafo/LinkedList/articulation/articulation.c
         )

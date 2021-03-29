@@ -19,7 +19,7 @@ void grafoArticulacao(GrafoMatriz G, int vertice) {
     }
     int *groupConexoVertice = (int *) malloc(G.numVertices * sizeof(int));
     if (ECC(grafo, groupConexoVertice) > ECC(G, groupConexoVertice) + 1)
-        printf("\n\tVertice %d eh uma articulacao!\n\n", vertice);
+        printf("\n\tVertice %d é uma articulacao!\n\n", vertice);
     else
-        printf("\n\tVertice %d nao eh uma articulacao!\n\n", vertice);
+        printf("\n\tVertice %d nao é uma articulacao!\n\n", vertice);
 }

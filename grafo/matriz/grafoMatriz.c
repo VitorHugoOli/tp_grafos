@@ -176,7 +176,7 @@ void bridgeR(GrafoMatriz G, int v) {
                 parent[w] = v;
                 bridgeR(G, w);
                 if (low[v] > low[w]) low[v] = low[w];
-                //if(v==w) printf("eh ponte");
+                //if(v==w) printf("é ponte");
                 if (low[w] == pre[w]) {
                     if ((vertice1 == v + 1 && vertice2 == w + 1) || (vertice1 == w + 1 && vertice2 == v + 1))
                         numpts++;

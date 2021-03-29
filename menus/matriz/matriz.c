@@ -12,12 +12,12 @@ void menuMatriz() {
 #if DEBUG
     leituraArquivo(&grafo);
     hasGrafo = 1;
+    limpatela
 #endif
 
-    limpatela
-    print_grafos();
 
     do {
+        print_grafos();
         printf("\033[1;34m");
         printf("\n\n═════════════════════ Menu ══════════════════════\n");
         if (hasGrafo) {
@@ -37,8 +37,8 @@ void menuMatriz() {
                "║    6    ║ Componente conexas                  ║\n"
                "║    7    ║ Verificar se vértice é articulação  ║\n"
                "║    8    ║ Verificar se aresta é ponte         ║\n"
-               "║    9    ║ Leer arquivo matriz                 ║\n"
-               "║   10    ║ Grafo para matriz                   ║\n"
+               "║    9    ║ Leer arquivo paad                   ║\n"
+               "║   10    ║ Grafo para paad                     ║\n"
                #if DEBUG
                "║   11    ║ Imprimir Matriz                     ║\n"
                #endif
@@ -89,7 +89,7 @@ void menuMatriz() {
                     imprime(grafo);
                     break;
                 case 'e':
-                    printf("\n\tPrograma finalizado com sucesso!\n");
+                    limpatela;
                     return;
                 default:
                     printf("Opcao invalida!\n");
@@ -133,7 +133,7 @@ void case4(GrafoMatriz *grafo) {
         printf("\n\tNumero de vertice invalido!\n\n");
         return;
     }
-    printf("\n\tO grau do vertice %d eh %d.\n\n", vertice, grau(*grafo, vertice));
+    printf("\n\tO grau do vertice %d é %d.\n\n", vertice, grau(*grafo, vertice));
 }
 
 void case7(GrafoMatriz *grafo) {
@@ -161,9 +161,9 @@ void case8(GrafoMatriz *grafo) {
         return;
     }
     if (GRAPHbridges(*grafo) == 1)
-        printf("\n\tAresta %d -> %d eh uma ponte\n\n", vertice1, vertice2);
+        printf("\n\tAresta %d -> %d é uma ponte\n\n", vertice1, vertice2);
     else
-        printf("\n\tAresta %d -> %d nao eh uma ponte\n\n", vertice1, vertice2);
+        printf("\n\tAresta %d -> %d nao é uma ponte\n\n", vertice1, vertice2);
 }
 
 void case5(GrafoMatriz *grafo) {

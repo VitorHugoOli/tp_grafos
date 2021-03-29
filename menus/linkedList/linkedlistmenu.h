@@ -4,6 +4,10 @@
 #include "../../utils/utils.h"
 #include "../../grafo/LinkedList/grafoLinkedList.h"
 #include "../../grafo/LinkedList/linkedPaad/linkedPaad.h"
+#include "../../grafo/LinkedList/conexo/conexo.h"
+#include "../../grafo/LinkedList/bridge/bridge.h"
+#include "../../grafo/LinkedList/articulation/articulation.h"
+#include "../../grafo/LinkedList/depth/depthLinkedList.h"
 
 
 #ifndef TP_C_LINKEDLISTMENU_H
@@ -23,7 +27,7 @@ void caseLinked7(GrafoLinked *grafo);
 
 void caseLinked8(GrafoLinked *grafo);
 
-int caseLinked9(GrafoLinked *grafo, Paad *paad);
+int caseLinked9(GrafoLinked *grafo, Paad *paad, int isInitGraph);
 
 void caseLinked5(GrafoLinked *grafo);
 

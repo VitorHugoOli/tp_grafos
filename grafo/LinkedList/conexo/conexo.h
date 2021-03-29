@@ -5,7 +5,7 @@
 #define TP_C_CONEXO_H
 
 
-int ECCLinked(GrafoLinked G, int *groupConexoVertice);
+int ECCLinked(GrafoLinked grafo,int show_result);
 
 void PCCLinked(GrafoLinked G, int verticeAnalise, int numGrupoConexo, int *groupConexoVertice);
 

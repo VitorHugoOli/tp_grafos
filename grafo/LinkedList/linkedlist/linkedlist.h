@@ -14,6 +14,11 @@ typedef struct linked {
     struct linked *next;
 } LinkedList;
 
+typedef struct {
+    int size;
+    int *vetor;
+} listaAresta;
+
 LinkedList *alocaNode(int vertices);
 
 LinkedList *createNode(int vertice, float weight);
@@ -21,5 +26,11 @@ LinkedList *createNode(int vertice, float weight);
 LinkedList *createLinkedList(int numVertices);
 
 void printLinked(LinkedList *list);
+
+int deleteAresta(LinkedList *list, int vertice);
+
+int isAresta(LinkedList *list, int vertice);
+
+LinkedList copyLinkedList(LinkedList *list);
 
 #endif //TP_C_LINKEDLIST_H

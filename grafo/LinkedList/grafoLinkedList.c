@@ -80,14 +80,12 @@ int textToGrafo(GrafoLinked *grafo) {
 
         grafo->list = createLinkedList(grafo->numVertices);
 
-
         if (grafo->list == NULL) {
             fclose(arquivo);
             printf("\n\tMemoria insuficiente.\n\n");
             return 1;
         }
-
-        grafo->numArestas=0;
+        grafo->numArestas = 0;
         while (fscanf(arquivo, "%d %d %f", &data.linha, &data.coluna, &data.peso) != EOF) {
             addAresta(&grafo->list[data.linha - 1], data.coluna, data.peso);
             addAresta(&grafo->list[data.coluna - 1], data.linha, data.peso);
@@ -100,6 +98,41 @@ int textToGrafo(GrafoLinked *grafo) {
     printf("\n\tArquivo lido com sucesso! \\o/ \n\n");
     return 1;
 }
+
+LinkedList *copyList(GrafoLinked *grafo) {
+    LinkedList *list = createLinkedList(grafo->numVertices);
+    for (int i = 0; i < grafo->numVertices; ++i) {
+        list[i] = copyLinkedList(&grafo->list[i]);
+    }
+    return list;
+}
+
+LinkedList *deleteVertice(GrafoLinked *grafo, int vertice) {
+    int oldNumVertices = grafo->numVertices;
+    grafo->numVertices--;
+
+    LinkedList *list = createLinkedList(grafo->numVertices);
+
+    LinkedList *node = &grafo->list[vertice];
+
+    while (node != NULL) {
+        deleteAresta(&grafo->list[node->vertice - 1], vertice + 1);
+        node = node->next;
+    }
+
+
+    int newIndex = 0;
+    for (int i = 0; i < oldNumVertices; ++i) {
+        if (vertice != oldNumVertices) {
+            list[newIndex] = grafo->list[i];
+            newIndex++;
+        }
+    }
+    free(grafo->list);
+
+    return list;
+}
+
 
 /*
  * Operacoes dos Choices

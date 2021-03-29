@@ -29,10 +29,10 @@ int linkedToPaad(GrafoLinked *grafo, Paad *paad) {
 }
 
 
-int PaadToLinked(GrafoLinked *grafo, Paad *paad) {
+int PaadToLinked(GrafoLinked *grafo, Paad *paad, int isInitGraph) {
     int to, from;
 
-    if (grafo->list != NULL) {
+    if (grafo->list != NULL && isInitGraph) {
         free(grafo->list);
     }
 
@@ -47,14 +47,11 @@ int PaadToLinked(GrafoLinked *grafo, Paad *paad) {
     for (int i = 0; i < paad->edgesLen; ++i) {
         to = searchIndex(paad->edges[i].to, paad);
         from = searchIndex(paad->edges[i].from, paad);
-        printf("%d %d %f\n", paad->edges[i].to, paad->edges[i].from, paad->edges[i].weight);
-        printf("%d %d %f\n\n", to, from, paad->edges[i].weight);
         addAresta(&grafo->list[to], from + 1, paad->edges[i].weight);
         addAresta(&grafo->list[from], to + 1, paad->edges[i].weight);
         grafo->numArestas++;
     }
-    printGrafo(grafo);
-    printf("Parse Paad json para Linked com sucesso! \\o/");
+    printf("Parse Paad json para Linked com sucesso! \\o/\n");
     fflush(stdin);
     fflush(stdout);
     return 1;

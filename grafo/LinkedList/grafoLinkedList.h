@@ -29,5 +29,9 @@ void vizinhosLinked(GrafoLinked *grafo);
 
 int grauLinked(GrafoLinked *grafo);
 
+LinkedList *copyList(GrafoLinked *grafo);
+
+LinkedList *deleteVertice(GrafoLinked *grafo, int vertice);
+
 
 #endif //TP_C_GRAFOLINKEDLIST_H

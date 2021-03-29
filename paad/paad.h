@@ -20,9 +20,10 @@ typedef struct {
     Edge *edges;
     int *nodes;
     int isPonderado;
+    char *file;
 } Paad;
 
-char *readPaadFiles();
+char *readPaadFiles(Paad *paad);
 
 int searchIndex(int value, Paad *paad);
 

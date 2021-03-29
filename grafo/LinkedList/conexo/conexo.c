@@ -5,41 +5,47 @@
 
 //COMPONENTE CONEXA
 
-/*
- * encontraComponenteConexo(ECC)
- *
- * Acha todos os componentes conexos e seus respectivos vertices
- * */
-int ECCLinked(GrafoLinked G, int *groupConexoVertice) {
+void printEcc(int numGrupoConexo, int *groupConexoVertice, int numVertices) {
+    printf("\n\tO numero de componentes conexas é %d\n", numGrupoConexo);
+    int i, j;
+    for (j = 0; j < numGrupoConexo; j++) {
+        printf("\n\tVertices do componente conexo: %d ->  ", j + 1);
+        for (i = 0; i < numVertices; i++)
+            if (groupConexoVertice[i] == j)
+                printf("%d ", i + 1);
+        printf("\n");
+    }
+    printf("\n");
+
+}
+
+int ECCLinked(GrafoLinked grafo, int show_result) {
+    int *groupConexoVertice = (int *) malloc(grafo.numVertices * sizeof(int));
     int numGrupoConexo = 0;
 
-    //Inicializa o vetor groupConexoVertice
-    for (int i = 0; i < G.numVertices; i++)
+    for (int i = 0; i < grafo.numVertices; i++)
         groupConexoVertice[i] = -1;
 
-    //Percorrer todos os vertices do grafo
-    for (int vertice = 0; vertice < G.numVertices; vertice++)
-        //Entra nos vertices que tem valores igual a -1
+
+    for (int vertice = 0; vertice < grafo.numVertices; vertice++)
         if (groupConexoVertice[vertice] == -1)
-            PCCLinked(G, vertice, numGrupoConexo++, groupConexoVertice);
+            PCCLinked(grafo, vertice, numGrupoConexo++, groupConexoVertice);
+
+    if (show_result) {
+        printEcc(numGrupoConexo, groupConexoVertice, grafo.numVertices);
+        printf("\n");
+    }
+    free(groupConexoVertice);
+
     return numGrupoConexo;
 }
 
-
-/*
- *  percorreComponenteConexo(PCC)
- *
- *  Dado um verticeAnalise, percorre todos os outros vertices do mesmo
- *  grupo conexo a ele.
- * */
 void PCCLinked(GrafoLinked G, int verticeAnalise, int numGrupoConexo, int *groupConexoVertice) {
-
-    //Atribuindo no index que representa o verticeAnalise o seu grupo conexo
+    if (groupConexoVertice[verticeAnalise] != -1) return;
     groupConexoVertice[verticeAnalise] = numGrupoConexo;
-
-    //Percorrer todos os vertices do grafo
-    for (int verticesComparado = 0; verticesComparado < G.numVertices; verticesComparado++)
-        //SE o verticeAnalise e o verticeConexo possui aresta E o vertice conexo nao tiver sido visitado, ENTRA NO IF
-//        if (G.matriz[verticeAnalise][verticesComparado] != valorInicial && groupConexoVertice[verticesComparado] == -1)
-        PCCLinked(G, verticesComparado, numGrupoConexo, groupConexoVertice);
+    LinkedList *node = &G.list[verticeAnalise];
+    while (node != NULL) {
+        PCCLinked(G, (node->vertice - 1), numGrupoConexo, groupConexoVertice);
+        node = node->next;
+    }
 }
