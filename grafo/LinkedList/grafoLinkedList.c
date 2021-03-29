@@ -7,7 +7,7 @@
 
 void initGrafo(GrafoLinked *grafo) {
     grafo = (GrafoLinked *) malloc(sizeof(GrafoLinked));
-    grafo->nomeArquivo = (char *) malloc(255 * sizeof(char));
+    grafo->nomeArquivo = NULL;
     grafo->numVertices = 0;
     grafo->numArestas = 0;
     grafo->list = NULL;
@@ -45,16 +45,18 @@ FILE *readFiles(GrafoLinked *grafo) {
     FILE *arquivo;
     char nomeArquivo[255];
 
+
 #if DEBUG
     arquivo = fopen(debugFile, "rw");
     strcpy(nomeArquivo, debugFile);
-    grafo->nomeArquivo = (char *) malloc(sizeof(debugFile)/sizeof (char)* sizeof(char));
+    grafo->nomeArquivo = (char *) malloc(sizeof(debugFile) / sizeof(char) * sizeof(char));
     strcpy(grafo->nomeArquivo, nomeArquivo);
 #else
     fflush(stdin);
     printf("Entre com o nome do arquivo: ");
     scanf("%s", nomeArquivo);
     arquivo = fopen(nomeArquivo, "rw");
+    grafo->nomeArquivo = (char *) malloc(sizeof(nomeArquivo)/sizeof (char)* sizeof(char));
 
     strcpy(grafo->nomeArquivo, nomeArquivo);
 #endif
