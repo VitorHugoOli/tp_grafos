@@ -47,7 +47,9 @@ FILE *readFiles(GrafoLinked *grafo) {
 
 #if DEBUG
     arquivo = fopen(debugFile, "rw");
-    strcpy(grafo->nomeArquivo, debugFile);
+    strcpy(nomeArquivo, debugFile);
+    grafo->nomeArquivo = (char *) malloc(sizeof(debugFile)/sizeof (char)* sizeof(char));
+    strcpy(grafo->nomeArquivo, nomeArquivo);
 #else
     fflush(stdin);
     printf("Entre com o nome do arquivo: ");
@@ -59,6 +61,7 @@ FILE *readFiles(GrafoLinked *grafo) {
     if (arquivo == NULL) {
         return NULL;
     }
+
     return arquivo;
 
 }
