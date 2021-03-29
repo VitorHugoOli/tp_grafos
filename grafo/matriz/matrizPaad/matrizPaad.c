@@ -30,6 +30,8 @@ int paadToMatriz(GrafoMatriz *grafo, Paad *paad) {
 int matrizToPaad(GrafoMatriz *grafo, Paad *paad) {
     paad->nodeLen = grafo->numVertices;
     paad->edgesLen = grafo->numArestas;
+    strcpy(grafo->nomeArquivo, paad->file);
+
     paad->nodes = (int *) malloc(paad->nodeLen * sizeof(int));
     paad->edges = (Edge *) malloc(paad->edgesLen * sizeof(Edge));
 

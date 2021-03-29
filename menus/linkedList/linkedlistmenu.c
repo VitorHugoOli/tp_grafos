@@ -9,6 +9,7 @@ void menuLinked() {
     GrafoLinked grafo;
     initGrafo(&grafo);
     Paad paad;
+    initPaad(&paad);
 
 #if DEBUG
     hasGrafo = textToGrafo(&grafo);

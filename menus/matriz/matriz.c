@@ -3,11 +3,11 @@
 #include "matriz.h"
 
 
-
 void menuMatriz() {
     int opcao, hasGrafo = 0;
     GrafoMatriz grafo;
     Paad paad;
+    initPaad(&paad);
     inicializaGrafoMatriz(&grafo);
 #if DEBUG
     leituraArquivo(&grafo);

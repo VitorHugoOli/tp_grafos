@@ -66,7 +66,6 @@ int textToGrafo(GrafoLinked *grafo) {
     FILE *arquivo;
     fileStruct data;
 
-
     do {
 
         arquivo = readFiles(grafo);
@@ -123,7 +122,7 @@ LinkedList *deleteVertice(GrafoLinked *grafo, int vertice) {
 
     int newIndex = 0;
     for (int i = 0; i < oldNumVertices; ++i) {
-        if (vertice != oldNumVertices) {
+        if (i != vertice) {
             list[newIndex] = grafo->list[i];
             newIndex++;
         }

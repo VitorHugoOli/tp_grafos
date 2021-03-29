@@ -31,5 +31,7 @@ int paadRead(Paad *Paad);
 
 int paadWrite(Paad *Paad);
 
+void initPaad(Paad *Paad);
+
 
 #endif //TP_C_PAAD_H

@@ -39,6 +39,7 @@ int PaadToLinked(GrafoLinked *grafo, Paad *paad, int isInitGraph) {
 
     grafo->numVertices = paad->nodeLen;
     grafo->numArestas = paad->edgesLen;
+    strcpy(grafo->nomeArquivo, paad->file);
 
 
     grafo->list = createLinkedList(grafo->numVertices);
@@ -51,7 +52,7 @@ int PaadToLinked(GrafoLinked *grafo, Paad *paad, int isInitGraph) {
         addAresta(&grafo->list[from], to + 1, paad->edges[i].weight);
         grafo->numArestas++;
     }
-    printf("Parse Paad json para Linked com sucesso! \\o/\n");
+    printf("\033[1m\nParse Paad json para Linked com sucesso! \\o/\033[0m\n\n");
     fflush(stdin);
     fflush(stdout);
     return 1;

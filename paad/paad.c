@@ -2,15 +2,24 @@
 #include "paad.h"
 
 
+void initPaad(Paad *paad) {
+    paad->file = (char *) malloc(255 * sizeof(char));
+    paad->edgesLen = 0;
+    paad->nodeLen = 0;
+    paad->isPonderado = 0;
+}
+
 char *readPaadFiles(Paad *paad) {
     FILE *arquivo;
 #if DEBUG
     arquivo = fopen(debugPaad, "rw");
+    strcpy(paad->file,debugPaad);
 #else
     printf("Entre com o nome do arquivo matrizPaad: ");
     char nomeArquivo[255];
     scanf("%s", nomeArquivo);
     arquivo = fopen(nomeArquivo, "rw");
+    strcpy(paad->file, nomeArquivo);
 #endif
 
     if (arquivo == NULL) {
@@ -52,7 +61,7 @@ int paadRead(Paad *paad) {
 
 
     char *jsonStr = readPaadFiles(paad);
-    if (jsonStr == NULL){
+    if (jsonStr == NULL) {
         return 0;
     }
 
@@ -167,7 +176,7 @@ int paadWrite(Paad *paad) {
     }
 
 
-    arquivo = fopen("../paad.json", "w");
+    arquivo = fopen("paad.json", "w");
     char *stringg = cJSON_Print(json);
     fprintf(arquivo, "%s", stringg);
     fclose(arquivo);
