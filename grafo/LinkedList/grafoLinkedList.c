@@ -46,9 +46,7 @@ FILE *readFiles(GrafoLinked *grafo) {
     char nomeArquivo[255];
 
 #if DEBUG
-
     arquivo = fopen(debugFile, "rw");
-
     strcpy(grafo->nomeArquivo, debugFile);
 #else
     fflush(stdin);
@@ -58,6 +56,9 @@ FILE *readFiles(GrafoLinked *grafo) {
 
     strcpy(grafo->nomeArquivo, nomeArquivo);
 #endif
+    if (arquivo == NULL) {
+        return NULL;
+    }
     return arquivo;
 
 }
