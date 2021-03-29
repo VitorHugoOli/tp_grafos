@@ -127,9 +127,18 @@ LinkedList *deleteVertice(GrafoLinked *grafo, int vertice) {
 
 
     int newIndex = 0;
+    LinkedList *aux;
     for (int i = 0; i < oldNumVertices; ++i) {
         if (i != vertice) {
             list[newIndex] = grafo->list[i];
+            aux = &list[newIndex];
+            while (aux != NULL) {
+                if (aux->vertice > vertice) {
+                    aux->vertice--;
+                }
+                aux = aux->next;
+            }
+
             newIndex++;
         }
     }

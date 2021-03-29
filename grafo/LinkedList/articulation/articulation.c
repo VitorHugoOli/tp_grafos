@@ -30,21 +30,14 @@ int articulationLinked(GrafoLinked *grafo) {
     }
     vertice--; //Transformando o valor do vertice para o da lista
 
-    printf("Init\n");
-    testePrint(grafo->list, grafo->numVertices);
 
     LinkedList *cpyList = copyList(grafo);
 
-
-    printf("Copy\n");
-    testePrint(cpyList, grafo->numVertices);
 
     int pre_conexo = ECCLinked(*grafo, 0);
 
     grafo->list = deleteVertice(grafo, vertice);
 
-    printf("Delete\n");
-    testePrint(grafo->list, grafo->numVertices);
 
     int after_conexo = ECCLinked(*grafo, 0);
 
@@ -53,9 +46,6 @@ int articulationLinked(GrafoLinked *grafo) {
     grafo->list = cpyList;
     free(aux);
 
-
-    printf("Back copy\n");
-    testePrint(grafo->list, grafo->numVertices);
 
     if (pre_conexo != after_conexo) {
         printf("O vértice (%d) é uma articulação\n", vertice + 1);
