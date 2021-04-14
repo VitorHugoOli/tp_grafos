@@ -40,6 +40,9 @@ void menuLinked() {
                "║    8    ║ Verificar se aresta é ponte         ║\n"
                "║    9    ║ Leer arquivo paad                   ║\n"
                "║   10    ║ Grafo para paad                     ║\n"
+               "║   10    ║ Grafo para paad                     ║\n"
+               "║════════════════ Parte 2 ══════════════════════║\n"
+               "║   12    ║ Vizinho mais proximo                ║\n"
                #if DEBUG
                "║   11    ║ Imprimir Linked List                ║\n"
                #endif
@@ -49,7 +52,7 @@ void menuLinked() {
         );
         printf("\033[1;36mDigite a opção desejada: \033[0m");
         opcao = get_int();
-        if ((opcao > 0 && opcao <= 11 && hasGrafo) || (opcao == 0 || opcao == 101 || opcao == 9)) {
+        if ((opcao > 0 && opcao <= 12 && hasGrafo) || (opcao == 0 || opcao == 101 || opcao == 9)) {
             switch (opcao) {
                 case 0:
                     if (textToGrafo(&grafo)) hasGrafo = 1;
@@ -89,6 +92,10 @@ void menuLinked() {
                 case 11:
                     fflush(stdin);
                     printGrafo(&grafo);
+                    break;
+                case 12:
+                    fflush(stdin);
+                    nearestNeighbor(&grafo);
                     break;
                 case 'e':
                     if (hasGrafo) free(grafo.list);

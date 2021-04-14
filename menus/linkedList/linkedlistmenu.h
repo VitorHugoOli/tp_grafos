@@ -8,6 +8,7 @@
 #include "../../grafo/LinkedList/bridge/bridge.h"
 #include "../../grafo/LinkedList/articulation/articulation.h"
 #include "../../grafo/LinkedList/depth/depthLinkedList.h"
+#include "../../grafo/LinkedList/neighborhood/neighborhood.h"
 
 
 #ifndef TP_C_LINKEDLISTMENU_H

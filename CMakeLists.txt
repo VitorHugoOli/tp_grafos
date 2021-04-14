@@ -3,7 +3,8 @@ project(TP_C C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(TP_C main.c grafo/matriz/matrizPaad/matrizPaad.c
+add_executable(TP_C main.c
+        grafo/matriz/matrizPaad/matrizPaad.c
         grafo/matriz/depth/depth.c utils/utils.c cjson/cJSON.c
         grafo/matriz/conexo/conexo.c
         grafo/matriz/articulacao/articulacao.c
@@ -17,4 +18,5 @@ add_executable(TP_C main.c grafo/matriz/matrizPaad/matrizPaad.c
         grafo/LinkedList/conexo/conexo.c
         grafo/LinkedList/bridge/bridge.c
         grafo/LinkedList/articulation/articulation.c
+        grafo/LinkedList/neighborhood/neighborhood.c
         )
