@@ -5,10 +5,13 @@
 #include "linkedlistmenu.h"
 
 void menuLinked() {
-    int opcao, hasGrafo = 0;
-    GrafoLinked grafo;
-    initGrafo(&grafo);
+    int opcao, hasGrafo = 0, hasHP = 0;
+
     Paad paad;
+    GrafoLinked grafo;
+    HamiltonianPath hamiltonianPath ;
+
+    initGrafo(&grafo);
     initPaad(&paad);
 
 #if DEBUG
@@ -26,6 +29,13 @@ void menuLinked() {
         } else {
             printf("Arquivo carregado: -");
         }
+        printf("\n");
+        if (hasHP == 1) {
+            printf("Custo do ciclo hamiltaniano: \033[1;35m%f\033[1;34m", hamiltonianPath.cost);
+        } else {
+            printf("Custo do ciclo hamiltaniano: -");
+        }
+
         printf("\n"
                "╔═════════╦═════════════════════════════════════╗\n"
                "║ Valores ║ Descrição                           ║\n"
@@ -42,9 +52,9 @@ void menuLinked() {
                "║   10    ║ Grafo para paad                     ║\n"
                "║   10    ║ Grafo para paad                     ║\n"
                "║════════════════ Parte 2 ══════════════════════║\n"
-               "║   12    ║ Vizinho mais proximo                ║\n"
+               "║   11    ║ Vizinho mais proximo                ║\n"
                #if DEBUG
-               "║   11    ║ Imprimir Linked List                ║\n"
+               "║   15    ║ Imprimir Linked List                ║\n"
                #endif
                "║ e | 101 ║ Sair                                ║\n"
                "╚═════════╩═════════════════════════════════════╝\n"
@@ -52,7 +62,7 @@ void menuLinked() {
         );
         printf("\033[1;36mDigite a opção desejada: \033[0m");
         opcao = get_int();
-        if ((opcao > 0 && opcao <= 12 && hasGrafo) || (opcao == 0 || opcao == 101 || opcao == 9)) {
+        if ((opcao > 0 && opcao <= 15 && hasGrafo) || (opcao == 0 || opcao == 101 || opcao == 9)) {
             switch (opcao) {
                 case 0:
                     if (textToGrafo(&grafo)) hasGrafo = 1;
@@ -89,13 +99,13 @@ void menuLinked() {
                     linkedToPaad(&grafo, &paad);
                     paadWrite(&paad);
                     break;
-                case 11:
+                case 15:
                     fflush(stdin);
                     printGrafo(&grafo);
                     break;
-                case 12:
+                case 11:
                     fflush(stdin);
-                    nearestNeighbor(&grafo);
+                    hasHP = nearestNeighbor(&grafo,&hamiltonianPath);
                     break;
                 case 'e':
                     if (hasGrafo) free(grafo.list);
@@ -147,7 +157,7 @@ void caseLinked5(GrafoLinked *grafo) {
 
 int caseLinked9(GrafoLinked *grafo, Paad *paad, int isInitGraph) {
     if (paadRead(paad)) {
-        return PaadToLinked(grafo, paad,isInitGraph );
+        return PaadToLinked(grafo, paad, isInitGraph);
     }
     return 0;
 

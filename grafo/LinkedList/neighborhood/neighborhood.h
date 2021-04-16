@@ -8,9 +8,21 @@
 #ifndef TP_C_NEIGHBORHOOD_H
 #define TP_C_NEIGHBORHOOD_H
 
-void nearestNeighbor(GrafoLinked *grafo);
-void vizinhosR(int vertice, int *path, GrafoLinked *grafo, int count);
-int findNearestNeighbor(LinkedList *list, int *path, int len);
+typedef struct {
+    int *path;
+    int pathLen;
+    float cost;
+    double duration;
+    GrafoLinked *grafo;
+} HamiltonianPath;
+
+HamiltonianPath *initHamiltonianPath(GrafoLinked *grafo);
+
+int nearestNeighbor(GrafoLinked *grafo, HamiltonianPath *hamiltonianPath);
+
+void vizinhosR(int vertice, HamiltonianPath *hp, int count);
+
+int findNearestNeighbor(LinkedList *list, HamiltonianPath *hp);
 
 
 #endif //TP_C_NEIGHBORHOOD_H
