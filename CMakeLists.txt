@@ -4,19 +4,25 @@ project(TP_C C)
 set(CMAKE_C_STANDARD 99)
 
 add_executable(TP_C main.c
-        grafo/matriz/matrizPaad/matrizPaad.c
-        grafo/matriz/depth/depth.c utils/utils.c cjson/cJSON.c
-        grafo/matriz/conexo/conexo.c
-        grafo/matriz/articulacao/articulacao.c
-        grafo/LinkedList/linkedlist/linkedlist.c
-        menus/matriz/matriz.c grafo/matriz/grafoMatriz.c
-        menus/linkedList/linkedlistmenu.c
-        paad/paad.c
-        grafo/LinkedList/grafoLinkedList.c
-        grafo/LinkedList/linkedPaad/linkedPaad.c
-        grafo/LinkedList/depth/depthLikedList.c
-        grafo/LinkedList/conexo/conexo.c
-        grafo/LinkedList/bridge/bridge.c
-        grafo/LinkedList/articulation/articulation.c
-        grafo/LinkedList/neighborhood/neighborhood.c
-        )
+        src/grafo/algorithms/matrizPaad/matrizPaad.c
+        src/grafo/algorithms/depth/depth.c src/modules/utils/utils.c
+        src/grafo/algorithms/conexo/conexo.c
+        src/grafo/algorithms/articulacao/articulacao.c
+        src/modules/linkedlist/linkedlist.c
+        src/grafo/menus/matriz/matriz.c src/grafo/matriz/grafoMatriz.c
+        src/menu/menu.c
+        src/modules/paad/paad.c
+        src/tads/LinkedGrafo/linkedGrafo.c
+        src/algorithms/linkedPaad/linkedPaad.c
+        src/algorithms/depth/depthLikedList.c
+        src/algorithms/conexo/conexo.c
+        src/algorithms/bridge/bridge.c
+        src/algorithms/articulation/articulation.c
+        src/algorithms/neighborhood/neighborhood.c
+        src/algorithms/kOpt/kopt.c
+        src/algorithms/TCPLIB/tcplib.c src/algorithms/TCPLIB/tcplib.h
+        src/modules/cjson/cJson.o)
+
+
+target_link_libraries(TP_C m)
+target_link_libraries(TP_C pthread)

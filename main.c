@@ -1,11 +1,10 @@
 // https://ozh.github.io/ascii-tables/
-#include "utils/utils.h"
-#include "menus/matriz/matriz.h"
-#include "menus/linkedList/linkedlistmenu.h"
+
+#include "src/menu/menu.h"
+#include "src/grafo/menus/matriz/matriz.h"
 
 int main() {
     limpatela
-
     int chose = 0;
     while (chose != 101) {
         print_grafos();
