@@ -1,0 +1,172 @@
+{
+  "data": {
+    "nodes": {
+      "_subscribers": {
+        "*": [],
+        "add": [
+          {}
+        ],
+        "remove": [
+          {}
+        ],
+        "update": [
+          {}
+        ]
+      },
+      "_options": {},
+      "_data": {
+        "1": {
+          "id": 1,
+          "label": "1"
+        },
+        "2": {
+          "id": 2,
+          "label": "2"
+        },
+        "3": {
+          "id": 3,
+          "label": "3"
+        },
+        "4": {
+          "id": 4,
+          "label": "4"
+        },
+        "5": {
+          "id": 5,
+          "label": "5"
+        }
+      },
+      "length": 5,
+      "_idProp": "id",
+      "_type": {}
+    },
+    "edges": {
+      "_subscribers": {
+        "*": [],
+        "add": [
+          {}
+        ],
+        "remove": [
+          {}
+        ],
+        "update": [
+          {}
+        ]
+      },
+      "_options": {},
+      "_data": {
+        "2": {
+          "id": 2,
+          "from": 5,
+          "to": 6,
+          "color": {},
+          "label": "-8.4"
+        },
+        "3": {
+          "id": 3,
+          "from": 6,
+          "to": 7,
+          "color": {},
+          "label": "0.3"
+        },
+        "4": {
+          "id": 4,
+          "from": 5,
+          "to": 7,
+          "color": {},
+          "label": "4.6"
+        },
+        "5649a468-30b2-48ba-a5d3-d991f15179db": {
+          "from": 1,
+          "to": 2,
+          "id": "5649a468-30b2-48ba-a5d3-d991f15179db",
+          "label": "1.2"
+        },
+        "dd324c04-d78d-469d-940d-0fc1f4f397c4": {
+          "from": 1,
+          "to": 5,
+          "id": "dd324c04-d78d-469d-940d-0fc1f4f397c4",
+          "label": "0.1"
+        },
+        "ec6f54d3-5409-4fd9-b908-2d70fcf809a2": {
+          "from": 5,
+          "to": 3,
+          "id": "ec6f54d3-5409-4fd9-b908-2d70fcf809a2",
+          "label": "-8.4"
+        },
+        "360cd1e3-9c7a-46bf-a4fd-1af05a59e3de": {
+          "from": 3,
+          "to": 4,
+          "id": "360cd1e3-9c7a-46bf-a4fd-1af05a59e3de",
+          "label": "0.3"
+        },
+        "ed21685f-7a71-4641-97d6-069e8b24c2bb": {
+          "from": 4,
+          "to": 5,
+          "id": "ed21685f-7a71-4641-97d6-069e8b24c2bb",
+          "label": "4.6"
+        },
+        "2a8bec0d-d52f-485e-89e8-6af05c95beed": {
+          "from": 2,
+          "to": 5,
+          "id": "2a8bec0d-d52f-485e-89e8-6af05c95beed",
+          "label": "2.3"
+        }
+      },
+      "length": 9,
+      "_idProp": "id",
+      "_type": {}
+    }
+  },
+  "options": {
+    "locale": "pt-br",
+    "manipulation": {
+      "enabled": false
+    },
+    "edges": {
+      "font": {
+        "color": "#ffffff",
+        "strokeWidth": 0,
+        "size": 18
+      }
+    },
+    "nodes": {
+      "color": {
+        "border": "#698B69",
+        "background": "#458B74",
+        "highlight": {
+          "border": "#698B69",
+          "background": "#4f6e4f"
+        }
+      },
+      "font": {
+        "color": "white"
+      }
+    },
+    "physics": {
+      "enabled": true,
+      "forceAtlas2Based": {
+        "gravitationalConstant": -50,
+        "centralGravity": 0.01,
+        "springConstant": 0.02,
+        "springLength": 100,
+        "damping": 0.4,
+        "avoidOverlap": 0
+      },
+      "maxVelocity": 50,
+      "minVelocity": 0.1,
+      "solver": "forceAtlas2Based",
+      "stabilization": {
+        "enabled": true,
+        "iterations": 1000,
+        "updateInterval": 100,
+        "onlyDynamicEdges": false,
+        "fit": true
+      },
+      "timestep": 0.5,
+      "adaptiveTimestep": true
+    }
+  },
+  "ponderado": true,
+  "ordenado": false
+}

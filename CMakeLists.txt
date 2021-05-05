@@ -21,7 +21,7 @@ add_executable(TP_C main.c
         src/algorithms/neighborhood/neighborhood.c
         src/algorithms/kOpt/kopt.c
         src/algorithms/TCPLIB/tcplib.c src/algorithms/TCPLIB/tcplib.h
-        src/modules/cjson/cJson.o)
+        src/modules/cjson/cJson.o src/algorithms/lessCost/lessCost.c src/algorithms/lessCost/lessCost.h "src/tads/HamiltonianPath/hamiltonianPath.c" "src/tads/HamiltonianPath/hamiltonianPath.h")
 
 
 target_link_libraries(TP_C m)

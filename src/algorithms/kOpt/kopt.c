@@ -9,7 +9,7 @@
 #define timeThreshold 180
 #define safeArea 30
 #define totalBlocks (safeArea+3)
-#define maxImproves 2
+#define maxImproves 40
 
 
 int initKOpt(K_opt *kOpt) {
@@ -45,13 +45,13 @@ int loader(K_opt *kOpt) {
             printf("\rTempo restante: %.1fs %s Improvments: %d/3  cost: %f", (timeThreshold - duration), load,
                    kOpt->improvements, kOpt->hamiltonianPath.cost);
     }
-    if (!(timeThreshold >= duration)) {
+
+    if (timeThreshold <= duration) {
         kOpt->reachTime = true;
         kOpt->end_cyclo = true;
     }
+
     kOpt->time = duration;
-
-
 }
 
 void monitorHp(K_opt *kOpt) {
@@ -62,7 +62,6 @@ void monitorHp(K_opt *kOpt) {
     printf("\n");
     kOpt->block_monitor_clock = false;
 }
-
 
 int monitorImprovements(K_opt *kOpt) {
     float hold_cost = kOpt->hamiltonianPath.cost;

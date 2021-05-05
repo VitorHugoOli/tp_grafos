@@ -80,7 +80,6 @@ FILE *readFiles(GrafoLinked *grafo) {
     }
 
     return arquivo;
-
 }
 
 int textToGrafo(GrafoLinked *grafo) {

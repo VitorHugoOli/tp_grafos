@@ -38,8 +38,8 @@
 
 #include "time.h"
 
-//#define file_macro "testes/TCP/ch130.tsp"
-#define file_macro "testes/TCP/berlin52.tsp"
+#define file_macro "testes/TCP/ch130.tsp"
+//#define file_macro "testes/TCP/berlin52.tsp"
 #define paad_macro "testes/paad/complet_pdf_aula.json"
 #define macroBasePaad "src/modules/paad/base_json.json"
 
