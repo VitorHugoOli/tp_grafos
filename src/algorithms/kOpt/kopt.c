@@ -6,10 +6,10 @@
 
 #include "kopt.h"
 
-#define timeThreshold 180
+#define timeThreshold 30
 #define safeArea 30
 #define totalBlocks (safeArea+3)
-#define maxImproves 40
+#define maxImproves 3
 
 
 int initKOpt(K_opt *kOpt) {

@@ -11,18 +11,17 @@
 #include "neighborhood.h"
 
 int nearestNeighbor(GrafoLinked *grafo, HamiltonianPath *hp, int initNode) {
+    if (initNode > grafo->numVertices || initNode < -1) initNode = 1;
+
+
     initHamiltonianPath(grafo, hp);
 
 
-    clock_t t;
-    t = clock();
-
+    startMeasure;
     vizinhosR(initNode, hp, 0);
-
-    hp->duration = ((double) t) / CLOCKS_PER_SEC;
+    endMeasure;
 
     printHalminton(hp);
-
     return 1;
 }
 

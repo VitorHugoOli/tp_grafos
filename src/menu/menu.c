@@ -4,9 +4,13 @@
 
 #include "menu.h"
 #include "../algorithms/TCPLIB/tcplib.h"
+#include "../algorithms/cheaperInsertion/cheaperInsertion.h"
 
 void menuLinked() {
     int opcao, hasGrafo = 0, hasHP = 0;
+
+    int vectorTeste[3] = {6, 2, 5};
+
 
     Paad paad;
     GrafoLinked grafo;
@@ -55,6 +59,7 @@ void menuLinked() {
                "║   11    ║ Vizinho mais proximo                ║\n"
                "║   12    ║ Melhoria 2-opt                      ║\n"
                "║   13    ║ Ler TCP Euclidiano                  ║\n"
+               "║   14    ║ Aresta mais barata                  ║\n"
                #if DEBUG
                "║   15    ║ Imprimir Linked List                ║\n"
                #endif
@@ -119,6 +124,10 @@ void menuLinked() {
                     fflush(stdin);
                     readTCPLIB(&grafo);
                     break;
+                case 14:
+                    fflush(stdin);
+                    cheaperInsertionAlgorithm(&grafo, &hamiltonianPath, vectorTeste);
+                    break;
                 case 'e':
                     if (hasGrafo) free(grafo.list);
                     printf("\n\tPrograma finalizado com sucesso!\n");
@@ -172,9 +181,7 @@ int caseLinked9(GrafoLinked *grafo, Paad *paad, int isInitGraph) {
         return PaadToLinked(grafo, paad, isInitGraph);
     }
     return 0;
-
 };
-
 
 void caseLinked6(GrafoLinked *grafo) {
     ECCLinked(*grafo, 1);

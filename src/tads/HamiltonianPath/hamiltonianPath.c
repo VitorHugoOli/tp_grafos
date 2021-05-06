@@ -19,7 +19,8 @@ int initHamiltonianPath(GrafoLinked *grafo, HamiltonianPath *hp) {
 
 void printHalminton(HamiltonianPath *hp) {
     printf("\nCaminho pecorrido\n\n");
-    printf("Tempo Gasto = %lf\n", hp->duration);
+    printf("Tempo Gasto = %lfs\n", hp->duration);
+    printf("Tempo da Cpu Gasta = %lfs\n", hp->clockDuration);
     printf("Custo do ciclo = %f\n", hp->cost);
     for (int i = 0; i < hp->pathLen; ++i) {
 

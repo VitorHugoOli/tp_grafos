@@ -38,13 +38,13 @@
 
 #include "time.h"
 
-#define file_macro "testes/TCP/ch130.tsp"
+#define file_macro "testes/TCP/berlin52.tsp"
 //#define file_macro "testes/TCP/berlin52.tsp"
-#define paad_macro "testes/paad/complet_pdf_aula.json"
+#define paad_macro "testes/paad/cheaperinsertion.json"
 #define macroBasePaad "src/modules/paad/base_json.json"
 
 
-#define terminal 1
+#define terminal 0
 #if !terminal //clion case
 
 #define debugFile "../" file_macro

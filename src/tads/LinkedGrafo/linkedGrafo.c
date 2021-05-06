@@ -157,8 +157,6 @@ LinkedList *deleteNode(GrafoLinked *grafo, int vertice) {
 
 int deleteEdge(GrafoLinked *grafo, int to, int from) {
 
-    printf("%d - %d\n", to, from);
-
     deleteAresta(&(grafo->list[to - 1]), from);
     deleteAresta(&(grafo->list[from - 1]), to);
 
