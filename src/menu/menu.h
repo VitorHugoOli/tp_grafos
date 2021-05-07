@@ -40,6 +40,5 @@ void caseLinked5(GrafoLinked *grafo);
 
 void caseLinked6(GrafoLinked *grafo);
 
-//int caseLinked9(GrafoLinked *grafo, Paad *matrizPaad);
 
 #endif //TP_C_LINKEDLISTMENU_H

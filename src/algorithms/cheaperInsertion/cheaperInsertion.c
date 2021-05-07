@@ -5,11 +5,6 @@
 #include "cheaperInsertion.h"
 
 
-void reorderPath(HamiltonianPath *hp, cheaperInsertion *cp, CheaperResult *cheaperResult);
-
-void searchNextEdge(HamiltonianPath *hp, cheaperInsertion *cp, CheaperResult *cheaperResult);
-
-
 int cheaperInsertionAlgorithm(GrafoLinked *grafo, HamiltonianPath *hp, const int *initPath) {
     cheaperInsertion cp;
     initHamiltonianPath(grafo, hp);
@@ -24,26 +19,7 @@ int cheaperInsertionAlgorithm(GrafoLinked *grafo, HamiltonianPath *hp, const int
     translateCpToHp(hp, &cp);
 
     printHalminton(hp);
-}
-
-void initCheaperInsertion(cheaperInsertion *cp, int numb_nodes) {
-    startListNodes(&cp->selectNodes);
-    startListNodes(&cp->notSelectNodes);
-    cp->selectNodes.index = -1;
-    cp->notSelectNodes.index = -1;
-
-    cp->costs = (float *) malloc(numb_nodes * sizeof(float));
-    for (int i = 0; i < numb_nodes; ++i) cp->costs[i] = -1;
-}
-
-CheaperResult *initCheaperResult() {
-    CheaperResult *cr;
-    cr = (CheaperResult *) malloc(sizeof(CheaperResult));
-    cr->cost = -1;
-    cr->k = 0;
-    cr->j = 0;
-    cr->i = 0;
-    return cr;
+    return 1;
 }
 
 void translateCpToHp(HamiltonianPath *hp, cheaperInsertion *cp) {
@@ -61,14 +37,18 @@ void translateCpToHp(HamiltonianPath *hp, cheaperInsertion *cp) {
     hp->cost = sum;
 }
 
-void execCheaperInsertion(HamiltonianPath *hp, cheaperInsertion *cp) {
-    while (lenList(&cp->selectNodes) != hp->grafo->numVertices) {
-        CheaperResult *cheaperResult;
-        cheaperResult = initCheaperResult();
+/*
+ * Funçoes interna
+ */
 
-        searchNextEdge(hp, cp, cheaperResult);
-        reorderPath(hp, cp, cheaperResult);
-    }
+void initCheaperInsertion(cheaperInsertion *cp, int numb_nodes) {
+    startListNodes(&cp->selectNodes);
+    startListNodes(&cp->notSelectNodes);
+    cp->selectNodes.index = -1;
+    cp->notSelectNodes.index = -1;
+
+    cp->costs = (float *) malloc(numb_nodes * sizeof(float));
+    for (int i = 0; i < numb_nodes; ++i) cp->costs[i] = -1;
 }
 
 cheaperInsertion initVariableCheaperInsertion(HamiltonianPath *hp, const int *initPath, cheaperInsertion *cp) {
@@ -88,6 +68,26 @@ cheaperInsertion initVariableCheaperInsertion(HamiltonianPath *hp, const int *in
         removeNode(&(*cp).notSelectNodes, initPath[v]);
     }
     return (*cp);
+}
+
+CheaperResult *initCheaperResult() {
+    CheaperResult *cr;
+    cr = (CheaperResult *) malloc(sizeof(CheaperResult));
+    cr->cost = -1;
+    cr->k = 0;
+    cr->j = 0;
+    cr->i = 0;
+    return cr;
+}
+
+void execCheaperInsertion(HamiltonianPath *hp, cheaperInsertion *cp) {
+    while (lenList(&cp->selectNodes) != hp->grafo->numVertices) {
+        CheaperResult *cheaperResult;
+        cheaperResult = initCheaperResult();
+
+        searchNextEdge(hp, cp, cheaperResult);
+        reorderPath(hp, cp, cheaperResult);
+    }
 }
 
 void searchNextEdge(HamiltonianPath *hp, cheaperInsertion *cp, CheaperResult *cheaperResult) {

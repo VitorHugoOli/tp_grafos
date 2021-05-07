@@ -15,7 +15,7 @@ char *readPaadFiles(Paad *paad) {
     arquivo = fopen(debugPaad, "rw");
     strcpy(paad->file,debugPaad);
 #else
-    printf("Entre com o nome do arquivo matrizPaad: ");
+    printf("Entre com o nome do arquivo paad: ");
     char nomeArquivo[255];
     scanf("%s", nomeArquivo);
     arquivo = fopen(nomeArquivo, "rw");

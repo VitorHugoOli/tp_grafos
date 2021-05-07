@@ -56,12 +56,14 @@ void menuLinked() {
                "║    9    ║ Leer arquivo paad                   ║\n"
                "║   10    ║ Grafo para paad                     ║\n"
                "║════════════════ Parte 2 ══════════════════════║\n"
-               "║   11    ║ Vizinho mais proximo                ║\n"
-               "║   12    ║ Melhoria 2-opt                      ║\n"
-               "║   13    ║ Ler TCP Euclidiano                  ║\n"
-               "║   14    ║ Aresta mais barata                  ║\n"
+               "║   11    ║ Ler TCP Euclidiano                  ║\n"
+               "║   12    ║ Vizinho mais proximo                ║\n"
+               "║   13    ║ Aresta mais barata                  ║\n"
+               "║   14    ║ Melhoria 2-opt                      ║\n"
+               "║   15    ║ \\( •_•)_† Modo Analise              ║\n"
                #if DEBUG
-               "║   15    ║ Imprimir Linked List                ║\n"
+               "║════════════════ Auxiliares ═══════════════════║\n"
+               "║   16    ║ Imprimir Linked List                ║\n"
                #endif
                "║ e | 101 ║ Sair                                ║\n"
                "╚═════════╩═════════════════════════════════════╝\n"
@@ -69,7 +71,7 @@ void menuLinked() {
         );
         printf("\033[1;36mDigite a opção desejada: \033[0m");
         opcao = get_int();
-        if ((opcao > 0 && opcao <= 15 && hasGrafo) || (opcao == 0 || opcao == 101 || opcao == 9)) {
+        if ((opcao > 0 && opcao <= 16 && hasGrafo) || (opcao == 0 || opcao == 101 || opcao == 9)) {
             switch (opcao) {
                 case 0:
                     if (textToGrafo(&grafo)) hasGrafo = 1;
@@ -106,27 +108,33 @@ void menuLinked() {
                     linkedToPaad(&grafo, &paad);
                     paadWrite(&paad);
                     break;
-                case 15:
-                    fflush(stdin);
-                    printGrafo(&grafo);
-                    break;
                 case 11:
                     fflush(stdin);
-                    hasHP = nearestNeighbor(&grafo, &hamiltonianPath, 1);
+                    hasGrafo = readTCPLIB(&grafo);
                     break;
                 case 12:
+                    fflush(stdin);
+                    if (hasGrafo) hasHP = nearestNeighbor(&grafo, &hamiltonianPath, 1);
+                    else printf("Entre com um grafo\n");
+                    break;
+                case 13:
+                    fflush(stdin);
+                    if (hasGrafo) hasHP = cheaperInsertionAlgorithm(&grafo, &hamiltonianPath, vectorTeste);
+                    else printf("Entre com um grafo\n");
+                    break;
+                case 14:
                     fflush(stdin);
                     if (hasHP == 1) startKOpt(&hamiltonianPath, 2);
                     else printf("Hum, me parece que vc ainda não executou o hamilton ♒((⇀‸↼))♒");
                     printf("\n");
                     break;
-                case 13:
+                case 15:
                     fflush(stdin);
-                    readTCPLIB(&grafo);
+                    printf("Modo Analise -- Prepare-se para 9hrs de execução!");
                     break;
-                case 14:
+                case 16:
                     fflush(stdin);
-                    cheaperInsertionAlgorithm(&grafo, &hamiltonianPath, vectorTeste);
+                    printGrafo(&grafo);
                     break;
                 case 'e':
                     if (hasGrafo) free(grafo.list);

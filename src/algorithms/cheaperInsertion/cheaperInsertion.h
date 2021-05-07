@@ -29,6 +29,12 @@ CheaperResult *initCheaperResult();
 
 int cheaperInsertionAlgorithm(GrafoLinked *grafo, HamiltonianPath *hp, const int *initPath);
 
+void searchNextEdge(HamiltonianPath *hp, cheaperInsertion *cp, CheaperResult *cheaperResult);
+
+void reorderPath(HamiltonianPath *hp, cheaperInsertion *cp, CheaperResult *cheaperResult);
+
+void searchNextEdge(HamiltonianPath *hp, cheaperInsertion *cp, CheaperResult *cheaperResult);
+
 cheaperInsertion
 initVariableCheaperInsertion(HamiltonianPath *hp, const int *initPath, cheaperInsertion *cp);
 

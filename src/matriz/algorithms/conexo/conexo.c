@@ -17,7 +17,7 @@ int ECC(GrafoMatriz G, int *groupConexoVertice) {
     for (int i = 0; i < G.numVertices; i++)
         groupConexoVertice[i] = -1;
 
-    //Percorrer todos os vertices do grafo
+    //Percorrer todos os vertices do matriz
     for (int vertice = 0; vertice < G.numVertices; vertice++)
         //Entra nos vertices que tem valores igual a -1
         if (groupConexoVertice[vertice] == -1)
@@ -37,7 +37,7 @@ void PCC(GrafoMatriz G, int verticeAnalise, int numGrupoConexo, int *groupConexo
     //Atribuindo no index que representa o verticeAnalise o seu grupo conexo
     groupConexoVertice[verticeAnalise] = numGrupoConexo;
 
-    //Percorrer todos os vertices do grafo
+    //Percorrer todos os vertices do matriz
     for (int verticesComparado = 0; verticesComparado < G.numVertices; verticesComparado++)
         //SE o verticeAnalise e o verticeConexo possui aresta E o vertice conexo nao tiver sido visitado, ENTRA NO IF
         if (G.matriz[verticeAnalise][verticesComparado] != valorInicial && groupConexoVertice[verticesComparado] == -1)

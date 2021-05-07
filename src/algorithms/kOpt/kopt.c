@@ -6,7 +6,7 @@
 
 #include "kopt.h"
 
-#define timeThreshold 30
+#define timeThreshold 180
 #define safeArea 30
 #define totalBlocks (safeArea+3)
 #define maxImproves 3

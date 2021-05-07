@@ -30,8 +30,8 @@ void menuMatriz() {
                "╔═════════╦═════════════════════════════════════╗\n"
                "║ Valores ║ Descrição                           ║\n"
                "║    0    ║ Carregar arquivo                    ║\n"
-               "║    1    ║ Ordem do grafo                      ║\n"
-               "║    2    ║ Tamanho do grafo                    ║\n"
+               "║    1    ║ Ordem do matriz                      ║\n"
+               "║    2    ║ Tamanho do matriz                    ║\n"
                "║    3    ║ Vizinhos de um vértice              ║\n"
                "║    4    ║ Grau de um vértice                  ║\n"
                "║    5    ║ Busca em profundidade               ║\n"
@@ -108,11 +108,11 @@ void menuMatriz() {
 
 
 void case1(GrafoMatriz *grafo) {
-    printf("\n\tOrdem do grafo: %d\n\n", grafo->numVertices);
+    printf("\n\tOrdem do matriz: %d\n\n", grafo->numVertices);
 }
 
 void case2(GrafoMatriz *grafo) {
-    printf("\n\tTamanho do grafo: %d\n\n", grafo->numArestas);
+    printf("\n\tTamanho do matriz: %d\n\n", grafo->numArestas);
 }
 
 void case3(GrafoMatriz *grafo) {

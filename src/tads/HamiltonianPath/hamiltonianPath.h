@@ -30,6 +30,8 @@ void printHalminton(HamiltonianPath *hp);
 
 void printHalmintonSimple(HamiltonianPath *hp);
 
+
+
 int *pathcpy(const int *path, int pathLen);
 
 float *costVectorcpy(const float *path, int pathLen);

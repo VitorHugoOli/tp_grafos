@@ -45,7 +45,7 @@ void printGrafo(GrafoLinked *grafo) {
 
     if (grafo == NULL || grafo->numVertices == 0) {
         fflush(stdin);
-        printf("O grafo esta vazio vazia");
+        printf("O matriz esta vazio vazia");
     }
 
     for (int i = 0; i < grafo->numVertices; ++i) {

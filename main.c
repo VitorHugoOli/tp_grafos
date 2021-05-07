@@ -1,7 +1,7 @@
 // https://ozh.github.io/ascii-tables/
 
 #include "src/menu/menu.h"
-#include "src/grafo/menus/matriz/matriz.h"
+#include "src/matriz/menus/matriz/matriz.h"
 
 int main() {
     limpatela

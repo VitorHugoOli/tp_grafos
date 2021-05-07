@@ -17,7 +17,8 @@ int readTCPLIB(GrafoLinked *grafo) {
     if (arquivo == NULL) return 0;
 
     do fscanf(arquivo, "%s", reader);
-    while (strcmp(reader, "DIMENSION:") != 0);
+    while ((strcmp(reader, "DIMENSION:") != 0) || (strcmp(reader, "EOF") == 0));
+    if (strcmp(reader, "EOF") == 0) return 0;
 
     fscanf(arquivo, "%d", &(grafo->numVertices));
     tcp = (TcpEuc *) malloc(grafo->numVertices * sizeof(TcpEuc));
@@ -25,7 +26,9 @@ int readTCPLIB(GrafoLinked *grafo) {
 
 
     do fscanf(arquivo, "%s", reader);
-    while (strcmp(reader, "NODE_COORD_SECTION") != 0);
+    while ((strcmp(reader, "NODE_COORD_SECTION") != 0) || (strcmp(reader, "EOF") == 0));
+    if (strcmp(reader, "EOF") == 0) return 0;
+
 
     count = 0;
     while (fscanf(arquivo, "%d %lf %lf", &index, &x, &y) != 0) {
@@ -38,9 +41,13 @@ int readTCPLIB(GrafoLinked *grafo) {
 
     for (int i = 0; i < grafo->numVertices; ++i)
         for (int j = i + 1; j < grafo->numVertices; ++j) {
-            addAresta(&(grafo->list[i]), j+1, eucCalWeight(&tcp[i], &tcp[j]));
-            addAresta(&(grafo->list[j]), i+1, eucCalWeight(&tcp[j], &tcp[i]));
+            addAresta(&(grafo->list[i]), j + 1, eucCalWeight(&tcp[i], &tcp[j]));
+            addAresta(&(grafo->list[j]), i + 1, eucCalWeight(&tcp[j], &tcp[i]));
         }
+    grafo->numArestas = (grafo->numVertices*(grafo->numVertices-1))/2;
+
+    printf("\nTCP lido com sucesso ＼(~o~)／\n");
+    printf("\n");
     return 1;
 }
 
