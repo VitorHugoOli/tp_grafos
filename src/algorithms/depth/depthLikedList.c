@@ -1,11 +1,9 @@
 #include "depthLinkedList.h"
 
 
-listaAresta *initListaAresta(int len) {
-    listaAresta *list = (listaAresta *) malloc(sizeof(listaAresta));
+int initListaAresta(int len, listaAresta *list) {
     list->size = 0;
-    list->vetor = (int *) malloc(len * sizeof(int));
-    return list;
+    list->vetor = (int*)malloc(len*sizeof(int));
 }
 
 
@@ -33,21 +31,27 @@ void printsArestas(listaAresta *explorado, listaAresta *retorno) {
 void BuscaProfundidade_grafo(GrafoLinked *grafo, int ini) {
     int *visitado = (int *) malloc(grafo->numVertices * sizeof(int));
 
-    listaAresta *explorado = initListaAresta(grafo->numArestas);
-    listaAresta *retorno = initListaAresta(grafo->numArestas);
+    listaAresta explorado;
+    listaAresta retorno;
+    initListaAresta((grafo->numArestas), &explorado);
+    initListaAresta(grafo->numArestas, &retorno);
+
+
     int i, cont = 1;
 
     for (i = 0; i < grafo->numVertices; i++) visitado[i] = 0;
 
 
     printf("Ordem de visita: ");
-    BuscaProfundidade(grafo, ini, visitado, cont, explorado, retorno);
 
-    printsArestas(explorado, retorno);
+    BuscaProfundidade(grafo, ini, visitado, cont, &explorado, &retorno);
+
+
+    printsArestas(&explorado, &retorno);
 
     free(visitado);
-    free(explorado->vetor);
-    free(explorado);
+    free(explorado.vetor);
+
 }
 
 

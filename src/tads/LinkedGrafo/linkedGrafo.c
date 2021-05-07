@@ -82,6 +82,23 @@ FILE *readFiles(GrafoLinked *grafo) {
     return arquivo;
 }
 
+FILE *readFilesDirect(GrafoLinked *grafo, char *file) {
+    FILE *arquivo;
+    char nomeArquivo[255];
+
+
+    arquivo = fopen(file, "rw");
+    strcpy(nomeArquivo, file);
+    grafo->nomeArquivo = (char *) malloc(255 * sizeof(char));
+    strcpy(grafo->nomeArquivo, nomeArquivo);
+
+    if (arquivo == NULL) {
+        return NULL;
+    }
+
+    return arquivo;
+}
+
 int textToGrafo(GrafoLinked *grafo) {
     FILE *arquivo;
     fileStruct data;

@@ -2,8 +2,11 @@
 
 #include "src/menu/menu.h"
 #include "src/matriz/menus/matriz/matriz.h"
+#include "src/modules/analytics/analytics.h"
 
 int main() {
+
+    srand(time(NULL));
     limpatela
     int chose = 0;
     while (chose != 101) {

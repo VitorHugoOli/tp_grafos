@@ -24,7 +24,7 @@ add_executable(TP_C main.c
         src/modules/cjson/cJson.o src/algorithms/cheaperInsertion/cheaperInsertion.c
         src/tads/HamiltonianPath/hamiltonianPath.c
         src/algorithms/cheaperInsertion/ListNodes/ListNodes.c
-        )
+        src/modules/analytics/analytics.c src/modules/analytics/hashtable/hash.c src/modules/analytics/hashtable/hash.h)
 
 
 target_link_libraries(TP_C m)

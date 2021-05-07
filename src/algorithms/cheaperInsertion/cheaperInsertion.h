@@ -27,7 +27,7 @@ void initCheaperInsertion(cheaperInsertion *cp, int numb_nodes);
 
 CheaperResult *initCheaperResult();
 
-int cheaperInsertionAlgorithm(GrafoLinked *grafo, HamiltonianPath *hp, const int *initPath);
+int cheaperInsertionAlgorithm(GrafoLinked *grafo, HamiltonianPath *hp, const int *initPath, int silence);
 
 void searchNextEdge(HamiltonianPath *hp, cheaperInsertion *cp, CheaperResult *cheaperResult);
 

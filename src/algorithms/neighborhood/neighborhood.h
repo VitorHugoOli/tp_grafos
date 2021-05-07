@@ -9,7 +9,7 @@
 #include "../../tads/LinkedGrafo/linkedGrafo.h"
 #include "../../tads/HamiltonianPath/hamiltonianPath.h"
 
-int nearestNeighbor(GrafoLinked *grafo, HamiltonianPath *hp, int initNode);
+int nearestNeighbor(GrafoLinked *grafo, HamiltonianPath *hp, int initNode, int silence);
 
 void vizinhosR(int vertice, HamiltonianPath *hp, int count);
 

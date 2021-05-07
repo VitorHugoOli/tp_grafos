@@ -4,14 +4,17 @@
 
 #include "tcplib.h"
 
-int readTCPLIB(GrafoLinked *grafo) {
+int readTCPLIB(GrafoLinked *grafo, char *defaultFile, int silent) {
     FILE *arquivo;
     char reader[100];
     int index;
     double x;
     double y;
     int count;
-    arquivo = readFiles(grafo);
+    if (defaultFile == NULL)
+        arquivo = readFiles(grafo);
+    else
+        arquivo = readFilesDirect(grafo, defaultFile);
     TcpEuc *tcp;
 
     if (arquivo == NULL) return 0;
@@ -44,10 +47,13 @@ int readTCPLIB(GrafoLinked *grafo) {
             addAresta(&(grafo->list[i]), j + 1, eucCalWeight(&tcp[i], &tcp[j]));
             addAresta(&(grafo->list[j]), i + 1, eucCalWeight(&tcp[j], &tcp[i]));
         }
-    grafo->numArestas = (grafo->numVertices*(grafo->numVertices-1))/2;
+    grafo->numArestas = (grafo->numVertices * (grafo->numVertices - 1)) / 2;
 
-    printf("\nTCP lido com sucesso ＼(~o~)／\n");
-    printf("\n");
+    if (silent != 0) {
+        printf("\nTCP lido com sucesso ＼(~o~)／\n");
+        printf("\n");
+    }
+
     return 1;
 }
 

@@ -5,7 +5,7 @@
 #include "cheaperInsertion.h"
 
 
-int cheaperInsertionAlgorithm(GrafoLinked *grafo, HamiltonianPath *hp, const int *initPath) {
+int cheaperInsertionAlgorithm(GrafoLinked *grafo, HamiltonianPath *hp, const int *initPath, int silence) {
     cheaperInsertion cp;
     initHamiltonianPath(grafo, hp);
     initCheaperInsertion(&cp, grafo->numVertices);
@@ -18,7 +18,8 @@ int cheaperInsertionAlgorithm(GrafoLinked *grafo, HamiltonianPath *hp, const int
 
     translateCpToHp(hp, &cp);
 
-    printHalminton(hp);
+    if (!silence) printHalminton(hp);
+
     return 1;
 }
 

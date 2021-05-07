@@ -38,8 +38,12 @@
 
 #include "time.h"
 
-#define file_macro "testes/TCP/berlin52.tsp"
-//#define file_macro "testes/TCP/berlin52.tsp"
+#define berlin52_base "testes/TCP/berlin52.tsp"
+#define ch130_base "testes/TCP/ch130.tsp"
+#define d198_base "testes/TCP/d198.tsp"
+
+
+#define file_macro berlin52
 #define paad_macro "testes/paad/cheaperinsertion.json"
 #define macroBasePaad "src/modules/paad/base_json.json"
 
@@ -51,10 +55,18 @@
 #define debugPaad "../" paad_macro
 #define basePaad "../" macroBasePaad
 
+#define berlin52 "../" berlin52_base
+#define ch130 "../" ch130_base
+#define d198 "../" d198_base
+
 #else //normal terminal case
 
 #define debugFile file_macro
 #define debugPaad paad_macro
 #define basePaad macroBasePaad
+
+#define berlin52 berlin52_base
+#define ch130 ch130_base
+#define d198 d198_base
 
 #endif

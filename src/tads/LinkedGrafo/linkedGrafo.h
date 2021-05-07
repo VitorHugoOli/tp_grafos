@@ -21,6 +21,8 @@ void addAresta(LinkedList *to, int from, float weight);
 
 FILE *readFiles(GrafoLinked *grafo);
 
+FILE *readFilesDirect(GrafoLinked *grafo, char *file);
+
 void printGrafo(GrafoLinked *grafo);
 
 int secureChoice(GrafoLinked *grafo, int vertice);

@@ -5,6 +5,7 @@
 #include "menu.h"
 #include "../algorithms/TCPLIB/tcplib.h"
 #include "../algorithms/cheaperInsertion/cheaperInsertion.h"
+#include "../modules/analytics/analytics.h"
 
 void menuLinked() {
     int opcao, hasGrafo = 0, hasHP = 0;
@@ -71,7 +72,8 @@ void menuLinked() {
         );
         printf("\033[1;36mDigite a opção desejada: \033[0m");
         opcao = get_int();
-        if ((opcao > 0 && opcao <= 16 && hasGrafo) || (opcao == 0 || opcao == 101 || opcao == 9)) {
+        if ((opcao > 0 && opcao <= 16 && hasGrafo) ||
+            (opcao == 0 || opcao == 101 || opcao == 9 || opcao == 15 || opcao == 11)) {
             switch (opcao) {
                 case 0:
                     if (textToGrafo(&grafo)) hasGrafo = 1;
@@ -110,27 +112,27 @@ void menuLinked() {
                     break;
                 case 11:
                     fflush(stdin);
-                    hasGrafo = readTCPLIB(&grafo);
+                    hasGrafo = readTCPLIB(&grafo, NULL, 0);
                     break;
                 case 12:
                     fflush(stdin);
-                    if (hasGrafo) hasHP = nearestNeighbor(&grafo, &hamiltonianPath, 1);
+                    if (hasGrafo) hasHP = nearestNeighbor(&grafo, &hamiltonianPath, 1, 0);
                     else printf("Entre com um grafo\n");
                     break;
                 case 13:
                     fflush(stdin);
-                    if (hasGrafo) hasHP = cheaperInsertionAlgorithm(&grafo, &hamiltonianPath, vectorTeste);
+                    if (hasGrafo) hasHP = cheaperInsertionAlgorithm(&grafo, &hamiltonianPath, vectorTeste, 0);
                     else printf("Entre com um grafo\n");
                     break;
                 case 14:
                     fflush(stdin);
-                    if (hasHP == 1) startKOpt(&hamiltonianPath, 2);
+                    if (hasHP == 1) startKOpt(&hamiltonianPath, 0, 0, 0);
                     else printf("Hum, me parece que vc ainda não executou o hamilton ♒((⇀‸↼))♒");
                     printf("\n");
                     break;
                 case 15:
                     fflush(stdin);
-                    printf("Modo Analise -- Prepare-se para 9hrs de execução!");
+                    analyticMode();
                     break;
                 case 16:
                     fflush(stdin);

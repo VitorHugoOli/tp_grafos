@@ -15,7 +15,7 @@ typedef struct {
 } TcpEuc;
 
 
-int readTCPLIB(GrafoLinked *grafo);
+int readTCPLIB(GrafoLinked *grafo, char *defaultFile, int silent);
 float eucCalWeight(TcpEuc *to, TcpEuc *from);
 
 #endif //TP_C_TCPLIB_H

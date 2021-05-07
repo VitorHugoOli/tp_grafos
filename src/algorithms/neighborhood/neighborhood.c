@@ -10,7 +10,7 @@
 
 #include "neighborhood.h"
 
-int nearestNeighbor(GrafoLinked *grafo, HamiltonianPath *hp, int initNode) {
+int nearestNeighbor(GrafoLinked *grafo, HamiltonianPath *hp, int initNode, int silence) {
     if (initNode > grafo->numVertices || initNode < -1) initNode = 1;
 
 
@@ -21,7 +21,8 @@ int nearestNeighbor(GrafoLinked *grafo, HamiltonianPath *hp, int initNode) {
     vizinhosR(initNode, hp, 0);
     endMeasure;
 
-    printHalminton(hp);
+    if(!silence) printHalminton(hp);
+
     return 1;
 }
 
